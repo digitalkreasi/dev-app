@@ -22,10 +22,14 @@ def ftp_pull():
 
     # Pull setiap file dari server FTP ke direktori lokal
     for file_name in file_list:
-        # Skip directories
-        if ftp.nlst(file_name) != ['-']:
-            print(f"Skipping directory: {file_name}")
-            continue
+        try:
+            # Skip directories
+            if ftp.nlst(file_name) != ['-']:
+                print(f"Skipping directory: {file_name}")
+                continue
+        except:
+            # Error checking file existence, continue with retrieval
+            pass
 
         local_path = os.path.join(local_directory, file_name)
         with open(local_path, "wb") as local_file:
