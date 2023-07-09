@@ -1,2 +1,17 @@
-- name: Pull from FTP
-  run: pull.py
+name: Pull from FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run pull script
+        run: python pull.py
