@@ -13,8 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
       - name: Install required packages
-        run: pip install ftpsync
+        run: |
+          pip install ftpsync
 
       - name: FTP Deploy Action (Python3)
         uses: lujiaying/FTP-Deploy-Action-Python@v1.0
