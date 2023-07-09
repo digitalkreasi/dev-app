@@ -1,22 +1,21 @@
-on:
-  push:
-    branches:
-      - main
-
-name: Auto Deploy to cPanel
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
-        with:
-          ftp-server: ${{ secrets.FTP_SERVER }}
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
-          args: --server-dir /public_html/digitalkreasigroup.com/indofazz
+ name: FTP Deploy Action (Python3) 
+  # You may pin to the exact commit or the version.
+  # uses: lujiaying/FTP-Deploy-Action-Python@7068d119ac516944fbfbf55c91fe2a518476d80d
+  uses: lujiaying/FTP-Deploy-Action-Python@v1.0
+  with:
+    # ftp server url
+    ftp-server: ${{ secrets.FTP_SERVER }}
+    # ftp server port
+    port: 21
+    # ftp server username
+    ftp-username: ${{ secrets.FTP_USERNAME }}
+    # ftp server password
+    ftp-password: ${{ secrets.FTP_PASSWORD }}
+    # Folder to upload from, must end with trailing slash /
+    local_dir: ./
+    # Path to upload to on the server. Must end with trailing slash /
+    remote_dir: /public_html/digitalkreasigroup.com/indofazz
+    # Prints which modifications will be made with current config options, but doesnt actually make any changes
+    dry_run: # optional, default is False
+    #  wildcard of files and directories to exclude
+    exclude: # optional, default is .DS_Store,.git,.github,LICENSE,README.md
