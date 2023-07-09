@@ -15,7 +15,7 @@ def ftp_pull():
     ftp.login(user=ftp_username, passwd=ftp_password)
 
     # Pindah ke direktori yang diinginkan di server FTP
-    ftp.cwd("/public_html/digitalkreasigroup.com/indofazz")
+    ftp.cwd("/public_html/digitalkreasigroup.com/indofazz/")
 
     # Daftar file dan direktori di direktori server FTP
     file_list = ftp.nlst()
