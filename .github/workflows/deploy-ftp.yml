@@ -26,7 +26,7 @@ jobs:
           state-name: ftp-state.txt
           dry-run: false
           dangerous-clean-slate: false
-          exclude:
+          exclude:|
             - .DS_Store
             - .git
             - .github
