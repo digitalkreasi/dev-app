@@ -1,21 +1,26 @@
- name: FTP Deploy Action (Python3) 
-  # You may pin to the exact commit or the version.
-  # uses: lujiaying/FTP-Deploy-Action-Python@7068d119ac516944fbfbf55c91fe2a518476d80d
-  uses: lujiaying/FTP-Deploy-Action-Python@v1.0
-  with:
-    # ftp server url
-    ftp-server: ${{ secrets.FTP_SERVER }}
-    # ftp server port
-    port: 21
-    # ftp server username
-    ftp-username: ${{ secrets.FTP_USERNAME }}
-    # ftp server password
-    ftp-password: ${{ secrets.FTP_PASSWORD }}
-    # Folder to upload from, must end with trailing slash /
-    local_dir: ./
-    # Path to upload to on the server. Must end with trailing slash /
-    remote_dir: /public_html/digitalkreasigroup.com/indofazz
-    # Prints which modifications will be made with current config options, but doesnt actually make any changes
-    dry_run: # optional, default is False
-    #  wildcard of files and directories to exclude
-    exclude: # optional, default is .DS_Store,.git,.github,LICENSE,README.md
+name: FTP Deploy Action (Python3)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: FTP Deploy Action (Python3)
+        uses: lujiaying/FTP-Deploy-Action-Python@v1.0
+        with:
+          host: ${{ secrets.FTP_SERVER }}
+          port: 21
+          user: ${{ secrets.FTP_USERNAME }}
+          passwd: ${{ secrets.FTP_PASSWORD }}
+          local_dir: ./
+          remote_dir: /public_html/digitalkreasigroup.com/indofazz
+          dry_run: false
+          exclude: .DS_Store,.git,.github,LICENSE,README.md
