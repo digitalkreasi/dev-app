@@ -1,4 +1,4 @@
-name: FTP Deploy Action (Python3)
+name: FTP Deploy
 
 on:
   push:
@@ -13,23 +13,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          python-version: 3.x
-
-      - name: Install required packages
-        run: |
-          pip install ftpsync
-
-      - name: FTP Deploy Action (Python3)
-        uses: lujiaying/FTP-Deploy-Action-Python@v1.0
-        with:
-          host: ${{ secrets.FTP_SERVER }}
-          port: 21
-          user: ${{ secrets.FTP_USERNAME }}
-          passwd: ${{ secrets.FTP_PASSWORD }}
-          local_dir: ./
-          remote_dir: /public_html/digitalkreasigroup.com/indofazz
-          dry_run: false
-          exclude: .DS_Store,.git,.github,LICENSE,README.md
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: # Specify the FTP server port if required
+          protocol: # Specify the protocol if required
+          local-dir: # Specify the local directory to upload from if required
+          server-dir: # Specify the server directory to upload to if required
+          state-name: # Specify the state file name if required
+          dry-run: # Specify whether to perform a dry run if required
+          dangerous-clean-slate: # Specify if you want to delete all contents of server-dir
+          exclude: # Specify the files/directories to exclude if required
+            - .DS_Store
+            - .git
+            - .github
+            - LICENSE
+            - README.md
+          log-level: # Specify the log level if required
+          security: # Specify the security level if required
+          timeout: # Specify the timeout in milliseconds if required
