@@ -15,14 +15,20 @@ def ftp_pull():
     ftp.login(user=ftp_username, passwd=ftp_password)
 
     # Pindah ke direktori yang diinginkan di server FTP
-    ftp.cwd("/home/indt5495/public_html/digitalkreasigroup.com/indofazz")
+    ftp.cwd("/public_html/digitalkreasigroup.com/indofazz")
 
-    # Daftar file di direktori server FTP
+    # Daftar file dan direktori di direktori server FTP
     file_list = ftp.nlst()
 
     # Pull setiap file dari server FTP ke direktori lokal
     for file_name in file_list:
         local_path = os.path.join(local_directory, file_name)
+
+        # Skip directories during the pull process
+        if ftp.nlst(file_name) != ['-']:
+            print(f"Skipping directory: {file_name}")
+            continue
+
         with open(local_path, "wb") as local_file:
             ftp.retrbinary("RETR " + file_name, local_file.write)
 
