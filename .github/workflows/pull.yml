@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run pull script
-        run: python pull.py
+        run: python ./digitalkreasi/dev-app/.github/workflows/pull.py
