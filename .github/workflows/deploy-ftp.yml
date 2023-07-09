@@ -19,19 +19,19 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: # Specify the FTP server port if required
-          protocol: # Specify the protocol if required
-          local-dir: # Specify the local directory to upload from if required
-          server-dir: # Specify the server directory to upload to if required
-          state-name: # Specify the state file name if required
-          dry-run: # Specify whether to perform a dry run if required
-          dangerous-clean-slate: # Specify if you want to delete all contents of server-dir
-          exclude: # Specify the files/directories to exclude if required
+          port: 21
+          protocol: ftp
+          local-dir: ./
+          server-dir: /public_html/digitalkreasigroup.com/indofazz
+          state-name: ftp-state.txt
+          dry-run: false
+          dangerous-clean-slate: false
+          exclude:
             - .DS_Store
             - .git
             - .github
             - LICENSE
             - README.md
-          log-level: # Specify the log level if required
-          security: # Specify the security level if required
-          timeout: # Specify the timeout in milliseconds if required
+          log-level: standard
+          security: strict
+          timeout: 30000
