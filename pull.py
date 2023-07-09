@@ -23,12 +23,6 @@ def ftp_pull():
     # Pull setiap file dari server FTP ke direktori lokal
     for file_name in file_list:
         local_path = os.path.join(local_directory, file_name)
-
-        # Skip directories during the pull process
-        if ftp.nlst(file_name) != ['-']:
-            print(f"Skipping directory: {file_name}")
-            continue
-
         with open(local_path, "wb") as local_file:
             ftp.retrbinary("RETR " + file_name, local_file.write)
 
