@@ -22,7 +22,7 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./
-          server-dir: /public_html/digitalkreasigroup.com/indofazz
+          server-dir: /public_html/digitalkreasigroup.com/indofazz/
           state-name: ftp-state.txt
           dry-run: false
           dangerous-clean-slate: false
