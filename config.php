@@ -18,7 +18,7 @@ if (!$conn) {
 	die("Koneksi Gagal : " . mysqli_connect_error());
 }
 $config['web'] = array(
-	'url' => 'https://digitalkreasigroup.com/indofazz' // contoh: htdtp://sdmin.com/
+	'url' => 'https://digitalkreasigroup.com/indofazz/' // contoh: htdtp://sdmin.com/
 );
 // date & time
 $date = date("Y-m-d");
