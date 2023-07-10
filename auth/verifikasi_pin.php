@@ -5,20 +5,25 @@ date_default_timezone_set('Asia/Jakarta');
 $date = date('Y/m/d');
 $time = date('H:i:s');
 $dt = date('Y/m/d H:i:s');
-$username = $_SESSION['username'];
-$angkaotp = $_POST['pin'];
-$qlogin = "SELECT * FROM users WHERE username = '$username'";
-$execotp = mysqli_query($conn, $qlogin);
-$dapatotp = mysqli_fetch_array($execotp);
-if ($angkaotp == $dapatotp['pin']) {
-    $_SESSION['user'] = $dapatotp;
-    if (isset($_SESSION['cookie'])) {
-        setcookie('cookie_token', $_SESSION['cookie'], time() + 60 * 60 * 24 * 365, '/');
-    }
+if (isset($_SESSION['user'])) {
     header("Location: " . $config['web']['url']);
 } else {
-    echo "pin salah";
+    $username = $_SESSION['username'];
+    $angkaotp = $_POST['pin'];
+    $qlogin = "SELECT * FROM users WHERE username = '$username'";
+    $execotp = mysqli_query($conn, $qlogin);
+    $dapatotp = mysqli_fetch_array($execotp);
+    if ($angkaotp == $dapatotp['pin']) {
+        $_SESSION['user'] = $dapatotp;
+        if (isset($_SESSION['cookie'])) {
+            setcookie('cookie_token', $_SESSION['cookie'], time() + 60 * 60 * 24 * 365, '/');
+        }
+        header("Location: " . $config['web']['url']);
+    } else {
+        echo "pin salah";
+    }
 }
+
 ?>
 <html>
 
