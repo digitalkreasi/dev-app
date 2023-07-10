@@ -25,5 +25,12 @@ jobs:
           state-name: ftp-state.txt
           dry-run: false
           dangerous-clean-slate: false
+          exclude: |
+            - .DS_Store
+            - .git
+            - .github
+            - LICENSE
+            - README.md
           log-level: standard
           security: strict
+          timeout: 30000
