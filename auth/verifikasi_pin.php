@@ -18,8 +18,10 @@ if (isset($_SESSION['user'])) {
             $_SESSION['user'] = $dapatotp;
             if (isset($_SESSION['cookie'])) {
                 setcookie('cookie_token', $_SESSION['cookie'], time() + 60 * 60 * 24 * 365, '/');
+                unset($_SESSION['cookie']);
             }
             header("Location: " . $config['web']['url']);
+            unset($_SESSION['username']);
         } else {
             echo "pin salah";
         }
