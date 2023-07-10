@@ -34,4 +34,3 @@ jobs:
             - README.md
           log-level: standard
           security: strict
-          timeout: 30000
