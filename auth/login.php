@@ -49,11 +49,11 @@ if (isset($_SESSION['user'])) {
 						if ($remember == TRUE) {
 							$cookie_token = md5($username);
 							$conn->query("UPDATE users SET cookie_token='" . $cookie_token . "' WHERE username='" . $username . "'");
-							setcookie('cookie_token', $cookie_token, time() + 60 * 60 * 24 * 365, '/');
+							$_SESSION['cookie'] = $cookie_token;
 						}
 						$conn->query("INSERT INTO aktifitas VALUES ('','$username', 'Masuk', '" . get_client_ip() . "','$date','$time')");
-						$_SESSION['user'] = $data_pengguna;
-						exit(header("Location: " . $config['web']['url']));
+						$_SESSION['username'] = $data_pengguna['username'];
+						exit(header("Location: verifikasi_pin.php"));
 					} else {
 						$_SESSION['hasil'] = array('alert' => 'danger', 'pesan' => 'Ups, Gagal! Sistem Kami Sedang Mengalami Gangguan.<script>swal("Ups Gagal!", "Sistem Kami Sedang Mengalami Gangguan.", "error");</script>');
 					}
@@ -73,19 +73,19 @@ require '../lib/header_home.php';
 <div class="login-2" style="background-image: url('');">
 	<div class="container">
 		<div class="row">
-		    <div class="col-md-6 d-none d-sm-block">
-                <img src="https://okepedia.my.id/assets/media/logos/logooke.png" alt="Image" class="img-fluid" style="max-width: 100% !important;">
-            </div>
+			<div class="col-md-6 d-none d-sm-block">
+				<img src="https://okepedia.my.id/assets/media/logos/logooke.png" alt="Image" class="img-fluid" style="max-width: 100% !important;">
+			</div>
 			<div class="col-lg-6">
 				<div class="form-section">
 					<div style="margin-bottom:15px">
-					    <div class="">
-					        <h2>Masuk</h2>
-					        <a href="https://okepedia.my.id/public/auth/login">
-					            <img src="https://okepedia.my.id/assets/media/logos/logooke.png" width="220px" class="img" alt="solusimedia">
-					        </a>
-					    </div>
-					 </div>
+						<div class="">
+							<h2>Masuk</h2>
+							<a href="https://okepedia.my.id/public/auth/login">
+								<img src="https://okepedia.my.id/assets/media/logos/logooke.png" width="220px" class="img" alt="solusimedia">
+							</a>
+						</div>
+					</div>
 					<?php
 					if (isset($_SESSION['hasil'])) {
 					?>
@@ -96,7 +96,7 @@ require '../lib/header_home.php';
 						unset($_SESSION['hasil']);
 					}
 					?>
-					
+
 					<!--<div class="alert alert-success alert-dismissible">
 						<p>Belum Verifikasi Akun? <a href="<?php echo $config['web']['url'] ?>auth/verification-account"> <strong style="color:#354da1">Verifikasi Disini</strong></a></p>
 					</div>-->
@@ -126,7 +126,7 @@ require '../lib/header_home.php';
 								<button type="submit" class="btn btn-primary btn-block" name="masuk">Masuk</button>
 							</div>
 							<br />
-							
+
 							<p>Belum Punya Akun ?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/register"> <strong>Daftar</strong></a></p>
 							<br />
 							<p>Belum Verifikasi Akun ?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/verification-account"> <strong>Verifikasi Disini</strong></a></p>
