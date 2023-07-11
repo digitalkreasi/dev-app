@@ -32,17 +32,6 @@ if (isset($_SESSION['user'])) {
 <head>
 
 <body>
-    <h3>Lupa Kata Sandi</h3>
-    <?php
-    if (isset($_SESSION['hasil'])) {
-        ?>
-        <div class="alert alert-<?php echo $_SESSION['hasil']['alert'] ?> alert-dismissible" role="alert">
-            <?php echo $_SESSION['hasil']['pesan'] ?>
-        </div>
-        <?php
-        unset($_SESSION['hasil']);
-    }
-    ?>
     <form action="verifikasi_pin.php" method="POST">
         <input type="number" name="pin" placeholder="masukkan PIN" maxlength="6" pattern="[0-9]{6}" required>
         <br>

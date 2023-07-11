@@ -13,9 +13,9 @@ if (isset($_POST['reset-pin'])) {
 
     $error = array();
     if (empty($email)) {
-        $error['email'] = '*Tidak Boleh Kosong';
+        $_SESSION['hasil'] = array('alert' => 'danger', 'pesan' => 'Email Tidak Boleh Kosong.<script>swal("Ups Gagal!", "Email Tidak Boleh Kosong", "error");</script>');
     } else if ($cek_pengguna_ulang == 0) {
-        $error['email'] = '*Email Tidak Ditemukan';
+        $_SESSION['hasil'] = array('alert' => 'danger', 'pesan' => 'Email Tidak Ditemukan.<script>swal("Ups Gagal!", "Email Tidak Ditemukan.", "error");</script>');
     } else {
 
         $pin = acak_nomor(3) . acak_nomor(3);
