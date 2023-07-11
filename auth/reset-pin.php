@@ -31,7 +31,7 @@ $tipe = "Reset PIN";
             $mail->Username = "noreply@indofazz.com"; //user email
             $mail->Password = "D3laszband1234."; //password email 
             $mail->SetFrom("noreply@indofazz.com",""); //set email pengirim
-            $mail->Subject = "Lupa Kata Sandi Akun"; //subyek email
+            $mail->Subject = "Lupa PIN Akun"; //subyek email
             $mail->AddAddress("$email","");  //tujuan email
             $mail->MsgHTML("Reset PIN Akun<br><br><b>Email : $email<br><br>PIN Baru : $pin<b><br><br>Silahkan Masuk Dengan Menggunakan PIN Anda dan Ubah PIN Di pengaturan Akun. Terima Kasih!");
             if ($mail->Send());
