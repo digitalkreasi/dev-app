@@ -23,5 +23,6 @@ $config['web'] = array(
 // date & time
 $date = date("Y-m-d");
 $time = date("H:i:s");
+$dt = date('Y/m/d H:i:s');
 require("lib/function.php");
 require("lib/setting.php");

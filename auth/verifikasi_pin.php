@@ -36,6 +36,7 @@ if (isset($_SESSION['user'])) {
         <input type="number" name="pin" placeholder="masukkan PIN" maxlength="6" pattern="[0-9]{6}" required>
         <br>
         <input type="submit" name="login" value="LOGIN">
+        <a href="<?php echo $config['web']['url']?> auth/reset-pin">Lupa PIN?</a>
     </form>
 </body>
 </head>
