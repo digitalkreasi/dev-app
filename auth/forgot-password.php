@@ -24,13 +24,13 @@ $tipe = "Lupa Kata Sandi";
             $mail = new PHPMailer;
             $mail->IsSMTP();
             $mail->SMTPSecure = 'ssl'; 
-            $mail->Host = "mail.solusimedia.com"; //host masing2 provider email
+            $mail->Host = "mail.indofazz.com"; //host masing2 provider email
             $mail->SMTPDebug = 2;
             $mail->Port = 465;
             $mail->SMTPAuth = true;
-            $mail->Username = "support@solusimedia.com"; //user email
-            $mail->Password = "jLGsqw7OQ&e}"; //password email 
-            $mail->SetFrom("support@solusimedia.com",""); //set email pengirim
+            $mail->Username = "noreply@indofazz.com"; //user email
+            $mail->Password = "D3laszband1234."; //password email 
+            $mail->SetFrom("noreply@indofazz.com",""); //set email pengirim
             $mail->Subject = "Lupa Kata Sandi Akun"; //subyek email
             $mail->AddAddress("$email","");  //tujuan email
             $mail->MsgHTML("Lupa Kata Sandi Akun<br><br><b>Email : $email<br><br>Kata Sandi Baru : $acakin_password<b><br><br>Silahkan Masuk Dengan Menggunakan Kata Sandi Baru Anda dan Ubah Kata Sandi Di pengaturan Akun. Terima Kasih!");

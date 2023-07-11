@@ -53,7 +53,7 @@ if (isset($_SESSION['user'])) {
 						}
 						$conn->query("INSERT INTO aktifitas VALUES ('','$username', 'Masuk', '" . get_client_ip() . "','$date','$time')");
 						$_SESSION['username'] = $data_pengguna['username'];
-						exit(header("Location: verifikasi_pin.php"));
+						exit(header("Location: verifikasi_pin"));
 					} else {
 						$_SESSION['hasil'] = array('alert' => 'danger', 'pesan' => 'Ups, Gagal! Sistem Kami Sedang Mengalami Gangguan.<script>swal("Ups Gagal!", "Sistem Kami Sedang Mengalami Gangguan.", "error");</script>');
 					}
