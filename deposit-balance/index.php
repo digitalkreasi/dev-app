@@ -69,7 +69,7 @@ foreach ($matchedData as $match) {
             <form action="deposit" method="POST">
                 <input type="hidden" value="<?= $row['id'] ?>" name="namabank">
                 <br>
-                <input type="submit" name="pilihbank" value="<?= $row['nama'] ?>">
+                <input type="submit" name="pilihbank" value="<?= $row['kode'] ?>">
             </form>
         <?php
         } else {
@@ -77,7 +77,7 @@ foreach ($matchedData as $match) {
             <form action="deposit" method="POST">
                 <input type="hidden" value="<?= $row['id'] ?>" name="namabank">
                 <br>
-                <input type="submit" name="pilihbank" value="<?= $row['nama'] ?>" disabled>
+                <input type="submit" name="pilihbank" value="<?= $row['kode'] ?>" disabled>
                 <br>
                 <label for="namabank">Bank sedang tidak aktif</label>
             </form>
