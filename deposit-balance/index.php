@@ -61,21 +61,21 @@ foreach ($matchedData as $match) {
 
 <body>
     <?php
-    while ($r = mysqli_fetch_assoc($execbank)) {
-        if ($r['status'] == 'ON') {
+    while ($row = mysqli_fetch_assoc($execbank)) {
+        if ($row['status'] == 'ON') {
     ?>
             <form action="deposit" method="POST">
-                <input type="hidden" value="<?= $r['id'] ?>" name="namabank">
+                <input type="hidden" value="<?= $row['id'] ?>" name="namabank">
                 <br>
-                <input type="submit" name="pilihbank" value="<?= $r['nama'] ?>">
+                <input type="submit" name="pilihbank" value="<?= $row['nama'] ?>">
             </form>
         <?php
         } else {
         ?>
             <form action="deposit" method="POST">
-                <input type="hidden" value="<?= $r['id'] ?>" name="namabank">
+                <input type="hidden" value="<?= $row['id'] ?>" name="namabank">
                 <br>
-                <input type="submit" name="pilihbank" value="<?= $r['nama'] ?>" disabled>
+                <input type="submit" name="pilihbank" value="<?= $row['nama'] ?>" disabled>
                 <br>
                 <label for="namabank">Bank sedang tidak aktif</label>
             </form>
