@@ -7,7 +7,6 @@ require 'csrf_token.php';
 <html dir="ltr" lang="en">
 
 <head>
-    <script data-ad-client="ca-pub-7214743999507946" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
         <title><?php echo $data['title']; ?></title>
@@ -65,13 +64,6 @@ require 'csrf_token.php';
         <!-- End Hotjar Tracking -->
         
         <!-- Start Global Site Tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-37564768-1');
-        </script>
         <!-- End Global Site Tag (gtag.js) - Google Analytics -->
 
 </head>
