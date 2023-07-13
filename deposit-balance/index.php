@@ -61,7 +61,9 @@ foreach ($matchedData as $match) {
 
 <body>
     <?php
-    while ($row = mysqli_fetch_assoc($execbank)) {
+    $query = "SELECT * FROM tipe_pembayaran";
+    $execquery = mysqli_query($conn, $querybank);
+    while ($row = mysqli_fetch_assoc($execquery)) {
         if ($row['status'] == 'ON') {
     ?>
             <form action="deposit" method="POST">
