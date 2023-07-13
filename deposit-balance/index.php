@@ -12,7 +12,7 @@ $execquery = mysqli_query($conn, $query);
 <body>
     <?php
     while ($r = mysqli_fetch_assoc($execquery)) {
-        if ($r['status = "ON"']) {
+        if ($r['status'] == 'ON') {
     ?>
             <form action="deposit" method="POST">
                 <input type="hidden" value="<?= $r['id'] ?>" name="namabank">
@@ -26,7 +26,7 @@ $execquery = mysqli_query($conn, $query);
                 <input type="hidden" value="<?= $r['id'] ?>" name="namabank">
                 <br>
                 <input type="submit" name="pilihbank" value="<?= $r['nama'] ?>" disabled>
-                <label for="namabank">Bank sedang tidak aktif</label>
+                <label for="namabank">Bank sedang tidak</label>
             </form>
         <?php
         }
