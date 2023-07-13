@@ -7,7 +7,6 @@ require 'csrf_token.php';
 <html dir="ltr" lang="en">
 
 <head>
-    <script data-ad-client="ca-pub-7214743999507946" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
         <title><?php echo $data['title']; ?></title>
@@ -50,29 +49,6 @@ require 'csrf_token.php';
         <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <!-- End Script Morris Chart -->
-
-        <!-- Start Hotjar Tracking -->
-        <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:1070954,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
-        <!-- End Hotjar Tracking -->
-        
-        <!-- Start Global Site Tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-37564768-1');
-        </script>
-        <!-- End Global Site Tag (gtag.js) - Google Analytics -->
 
 </head>
 
