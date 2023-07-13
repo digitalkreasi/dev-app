@@ -50,21 +50,6 @@ require 'csrf_token.php';
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <!-- End Script Morris Chart -->
 
-        <!-- Start Hotjar Tracking -->
-        <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:1070954,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
-        <!-- End Hotjar Tracking -->
-        
-        <!-- Start Global Site Tag (gtag.js) - Google Analytics -->
-        <!-- End Global Site Tag (gtag.js) - Google Analytics -->
 
 </head>
 
