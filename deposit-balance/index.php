@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../config.php";
 $query = "SELECT * FROM tipe_pembayaran";
 $execquery = mysqli_query($conn, $query);
