@@ -45,39 +45,6 @@ require("../lib/header.php");
 				</div>
 				<div class="kt-portlet__body">
 					<?php
-					$cek_depo = $conn->query("SELECT * FROM deposit WHERE username = '$sess_username' AND status = 'Pending' ORDER BY id DESC");
-					while ($data_depo = $cek_depo->fetch_assoc()) {
-					?>
-						<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-						<script>
-							var url = "<?php echo $config['web']['url'] ?>deposit-balance/invoice?kode_deposit=<?php echo $data_depo['kode_deposit']; ?>"; // URL Tujuan
-							var count = 1; // dalam detik
-							function countDown() {
-								if (count > 0) {
-									count--;
-									var waktu = count + 1;
-									setTimeout("countDown()", 1000);
-								} else {
-									<?php
-									if ($data_depo['provider'] == 'Payment Gateway') {
-									?>
-										window.location.href = "<?= $data_depo['checkout_url'] ?>";
-									<?php
-									} else {
-									?>
-										window.location.href = url;
-									<?php
-									}
-									?>
-
-								}
-							}
-							countDown();
-						</script>
-					<?php
-					}
-					?>
-					<?php
 					if (isset($_SESSION['hasil'])) {
 					?>
 						<div class="alert alert-<?php echo $_SESSION['hasil']['alert'] ?> alert-dismissible" role="alert">
