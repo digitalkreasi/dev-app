@@ -26,7 +26,8 @@ $execquery = mysqli_query($conn, $query);
                 <input type="hidden" value="<?= $r['id'] ?>" name="namabank">
                 <br>
                 <input type="submit" name="pilihbank" value="<?= $r['nama'] ?>" disabled>
-                <label for="namabank">Bank sedang tidak</label>
+                <br>
+                <label for="namabank">Bank sedang tidak aktif</label>
             </form>
         <?php
         }
