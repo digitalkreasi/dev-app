@@ -37,7 +37,7 @@ if (isset($_SESSION['user'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mobile-friendly Form</title>
+    <title>indofazz - Verifikasi PIN</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <style>
     * {
@@ -125,7 +125,7 @@ if (isset($_SESSION['user'])) {
         color: #00AFF0;
         text-decoration: none;
         position: relative;
-        bottom: -230px;
+        bottom: -210px;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
     }
