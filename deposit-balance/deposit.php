@@ -2,7 +2,12 @@
 session_start();
 require("../config.php");
 require '../lib/session_user.php';
-
+if (isset($_POST['pilihbank'])) {
+	$bank = $_POST['namabank'];
+	$querybank = "SELECT * FROM tipe_pembayaran where nama = '$bank'";
+	$execbank = mysqli_query($conn, $querybank);
+	$databank = mysqli_fetch_assoc($execbank);
+}
 if (isset($_POST['buat'])) {
 	require '../lib/session_login.php';
 	$post_metode = $conn->real_escape_string(filter($_POST['radio7']));
@@ -258,43 +263,14 @@ require("../lib/header.php");
 					}
 					?>
 					<form class="form-horizontal" role="form" method="POST">
-						<input type="hidden" name="csrf_token" value="<?php echo $config['csrf_token'] ?>">
 						<div class="form-group row">
 							<label class="col-xl-3 col-lg-3 col-form-label">Tipe</label>
 							<div class="col-lg-9 col-xl-6">
 
 								<select class="form-control" name="tipe" id="tipe">
-									<option value="0">Pilih Salah Satu</option>
-									<option value="Transfer Bank">Transfer Bank</option>
+									<option value="<?= $bank ?>" selected disabled><?= $databank['kode']; ?></option>
 								</select>
 								<span class="form-text text-muted"><?php echo ($error['tipe']) ? $error['tipe'] : ''; ?></span>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-xl-3 col-lg-3 col-form-label">Provider Pembayaran</label>
-							<div class="col-lg-9 col-xl-6">
-								<select class="form-control" name="provider" id="provider">
-									<option value="0">Pilih Salah Satu</option>
-								</select>
-								<span class="form-text text-muted"><?php echo ($error['provider']) ? $error['provider'] : ''; ?></span>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-xl-3 col-lg-3 col-form-label">Tipe Pembayaran</label>
-							<div class="col-lg-9 col-xl-6">
-								<select class="form-control" name="pembayaran" id="pembayaran">
-									<option value="0">Pilih Salah Satu</option>
-								</select>
-								<span class="form-text text-muted"><?php echo ($error['pembayaran']) ? $error['pembayaran'] : ''; ?></span>
-							</div>
-						</div>
-						<div id="transfer_pulsa">
-							<div class="form-group row">
-								<label class="col-xl-3 col-lg-3 col-form-label">Pengirim</label>
-								<div class="col-lg-9 col-xl-6">
-									<input type="number" class="form-control" placeholder="0859xxxxxxxx" value="<?php echo $post_pengirim; ?>" name="pengirim">
-									<span class="form-text text-muted"><?php echo ($error['pengirim']) ? $error['pengirim'] : ''; ?></span>
-								</div>
 							</div>
 						</div>
 						<div class="form-group row">
