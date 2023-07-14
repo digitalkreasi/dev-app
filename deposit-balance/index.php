@@ -67,7 +67,7 @@ foreach ($matchedData as $match) {
         if ($row['status'] == 'ON') {
     ?>
             <form action="deposit" method="POST">
-                <input type="hidden" value="<?= $row['id'] ?>" name="namabank">
+                <input type="hidden" value="<?= $row['nama'] ?>" name="namabank">
                 <br>
                 <input type="submit" name="pilihbank" value="<?= $row['kode'] ?>">
             </form>
@@ -75,10 +75,9 @@ foreach ($matchedData as $match) {
         } else {
         ?>
             <form action="deposit" method="POST">
-                <input type="hidden" value="<?= $row['id'] ?>" name="namabank">
+                <input type="hidden" value="<?= $row['nama'] ?>" name="namabank">
                 <br>
                 <input type="submit" name="pilihbank" value="<?= $row['kode'] ?>" disabled>
-                <br>
                 <label for="namabank">Bank sedang tidak aktif</label>
             </form>
         <?php
