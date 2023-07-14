@@ -53,7 +53,7 @@ if (isset($_SESSION['user'])) {
     .container {
         max-width: 400px;
         width: 100%;
-        height: 95vh; /* Menggunakan unit vh untuk tinggi container */
+        height: 90vh; /* Menggunakan unit vh untuk tinggi container */
         margin: 0 auto;
         background-color: #fff;
         display: flex;
@@ -125,7 +125,7 @@ if (isset($_SESSION['user'])) {
         color: #00AFF0;
         text-decoration: none;
         position: relative;
-        bottom: -190px;
+        bottom: -150px;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
     }
