@@ -125,7 +125,7 @@ if (isset($_SESSION['user'])) {
         color: #00AFF0;
         text-decoration: none;
         position: relative;
-        bottom: -210px;
+        bottom: -190px;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
     }
