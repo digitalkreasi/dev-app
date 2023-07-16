@@ -157,7 +157,7 @@ require("../lib/header.php");
 							<div class="col-lg-9 col-xl-6">
 								<div class="input-group">
 									<div class="input-group-prepend"><span class="input-group-text text-primary">Rp</span></div>
-									<input type="text" class="form-control" name="test" value="<?= $sessbank . " " . $sessnamabank ?>" id="total" readonly>
+									<input type="text" class="form-control" name="test" value="<?= $_SESSION['user'] . " " . $_SESSION['username'] . $sess_username ?>" id="total" readonly>
 								</div>
 							</div>
 						</div>
