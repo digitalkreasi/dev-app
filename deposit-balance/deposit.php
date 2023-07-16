@@ -128,7 +128,7 @@ require("../lib/header.php");
 								$execbank = mysqli_query($conn, $querybank);
 								$databank = mysqli_fetch_assoc($execbank);
 								?>
-								<select class="form-control" name="tipe" id="tipe" disabled>
+								<select class="form-control" name="tipe" id="tipe">
 									<option value="<?= $sessbank ?>" selected><?= $databank['kode']; ?></option>
 								</select>
 								<span class="form-text text-muted"><?php echo ($error['tipe']) ? $error['tipe'] : ''; ?></span>
