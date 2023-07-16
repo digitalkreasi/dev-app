@@ -4,19 +4,14 @@ require("../config.php");
 require '../lib/session_user.php';
 if (isset($_POST['pilihbank'])) {
 	$bank = $_POST['namabank'];
-	$querybank = "SELECT * FROM tipe_pembayaran where nama = '$bank'";
-	$execbank = mysqli_query($conn, $querybank);
-	$databank = mysqli_fetch_assoc($execbank);
+	$_SESSION['bank'] = $bank;
+	$sessbank = $_SESSION['bank'];
 }
 if (isset($_POST['buat'])) {
 	require '../lib/session_login.php';
 	$post_bank = $conn->real_escape_string(filter($_POST['tipe']));
 	$post_jumlah = $conn->real_escape_string(filter($_POST['jumlah']));
 	$post_pin = $conn->real_escape_string(filter($_POST['pin']));
-
-	$querybank = "SELECT * FROM tipe_pembayaran where nama = '$post_bank'";
-	$execbank = mysqli_query($conn, $querybank);
-	$databank = mysqli_fetch_assoc($execbank);
 
 	$cek_depo = $conn->query("SELECT * FROM deposit WHERE username = '$sess_username' AND status = 'Pending'");
 	$data_depo = $cek_depo->fetch_assoc();
@@ -128,9 +123,13 @@ require("../lib/header.php");
 						<div class="form-group row">
 							<label class="col-xl-3 col-lg-3 col-form-label">Tipe</label>
 							<div class="col-lg-9 col-xl-6">
-
+								<?php
+								$querybank = "SELECT * FROM tipe_pembayaran where nama = '$sessbank'";
+								$execbank = mysqli_query($conn, $querybank);
+								$databank = mysqli_fetch_assoc($execbank);
+								?>
 								<select class="form-control" name="tipe" id="tipe" disabled>
-									<option value="<?= $bank ?>" selected><?= $databank['kode']; ?></option>
+									<option value="<?= $sessbank ?>" selected><?= $databank['kode']; ?></option>
 								</select>
 								<span class="form-text text-muted"><?php echo ($error['tipe']) ? $error['tipe'] : ''; ?></span>
 							</div>
