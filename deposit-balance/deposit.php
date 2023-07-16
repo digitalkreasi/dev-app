@@ -124,7 +124,7 @@ require("../lib/header.php");
 						<div class="form-group row">
 							<label class="col-xl-3 col-lg-3 col-form-label">Tipe</label>
 							<div class="col-lg-9 col-xl-6">
-								<select class="form-control" name="tipe" id="tipe" readonly>
+								<select class="form-control" name="tipe" id="tipe" disabled>
 									<option value="<?= $_SESSION['bank'] ?>" selected><?= $_SESSION['bankname'] ?></option>
 								</select>
 								<span class="form-text text-muted"><?php echo ($error['tipe']) ? $error['tipe'] : ''; ?></span>
