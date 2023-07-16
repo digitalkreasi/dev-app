@@ -4,8 +4,11 @@ require("../config.php");
 require '../lib/session_user.php';
 if (isset($_POST['pilihbank'])) {
 	$bank = $_POST['namabank'];
+	$namabank = $_POST['pilihbank'];
 	$_SESSION['bank'] = $bank;
+	$_SESSION['bankname'] = $namabank;
 	$sessbank = $_SESSION['bank'];
+	$sessnamabank = $_SESSION['bankname'];
 }
 if (isset($_POST['buat'])) {
 	require '../lib/session_login.php';
@@ -124,7 +127,7 @@ require("../lib/header.php");
 							<label class="col-xl-3 col-lg-3 col-form-label">Tipe</label>
 							<div class="col-lg-9 col-xl-6">
 								<select class="form-control" name="tipe" id="tipe">
-									<option value="<?= $sessbank ?>" selected><?= $sessbank ?></option>
+									<option value="<?= $sessbank ?>" selected><?= $sessnamabank ?></option>
 								</select>
 								<span class="form-text text-muted"><?php echo ($error['tipe']) ? $error['tipe'] : ''; ?></span>
 							</div>
