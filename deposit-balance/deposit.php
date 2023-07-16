@@ -153,6 +153,15 @@ require("../lib/header.php");
 							</div>
 						</div>
 						<div class="form-group row">
+							<label class="col-xl-3 col-lg-3 col-form-label">Pengecekkan</label>
+							<div class="col-lg-9 col-xl-6">
+								<div class="input-group">
+									<div class="input-group-prepend"><span class="input-group-text text-primary">Rp</span></div>
+									<input type="text" class="form-control" name="test" value="<?= $sessbank . " " . $sessnamabank ?>" id="total" readonly>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-xl-3 col-lg-3 col-form-label">PIN</label>
 							<div class="col-lg-9 col-xl-6">
 								<div class="input-group">
