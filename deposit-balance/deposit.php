@@ -14,8 +14,7 @@ if (isset($_POST['buat'])) {
 	$post_jumlah = $conn->real_escape_string(filter($_POST['jumlah']));
 	$post_pin = $conn->real_escape_string(filter($_POST['pin']));
 
-	$bank = $_POST['namabank'];
-	$querybank = "SELECT * FROM tipe_pembayaran where nama = '$bank'";
+	$querybank = "SELECT * FROM tipe_pembayaran where nama = '$post_bank'";
 	$execbank = mysqli_query($conn, $querybank);
 	$databank = mysqli_fetch_assoc($execbank);
 
