@@ -127,7 +127,7 @@ require("../lib/header.php");
 							<label class="col-xl-3 col-lg-3 col-form-label">Tipe</label>
 							<div class="col-lg-9 col-xl-6">
 								<select class="form-control" name="tipe" id="tipe">
-									<option value="<?= $SESSION['bank'] ?>" selected><?= $SESSION['bankname'] ?></option>
+									<option value="<?= $_SESSION['bank'] ?>" selected><?= $_SESSION['bankname'] ?></option>
 								</select>
 								<span class="form-text text-muted"><?php echo ($error['tipe']) ? $error['tipe'] : ''; ?></span>
 							</div>
@@ -157,7 +157,7 @@ require("../lib/header.php");
 							<div class="col-lg-9 col-xl-6">
 								<div class="input-group">
 									<div class="input-group-prepend"><span class="input-group-text text-primary">Rp</span></div>
-									<input type="text" class="form-control" name="test" value="<?= $sess_username . $_SESSION['bank'] . $_SESSION['bankname'] ?>" id="total" readonly>
+									<input type="text" class="form-control" name="test" value="<?= $sessbank . $sessnamabank ?>" id="total" readonly>
 								</div>
 							</div>
 						</div>
