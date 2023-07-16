@@ -123,13 +123,8 @@ require("../lib/header.php");
 						<div class="form-group row">
 							<label class="col-xl-3 col-lg-3 col-form-label">Tipe</label>
 							<div class="col-lg-9 col-xl-6">
-								<?php
-								$querybank = "SELECT * FROM tipe_pembayaran where nama = '$sessbank'";
-								$execbank = mysqli_query($conn, $querybank);
-								$databank = mysqli_fetch_assoc($execbank);
-								?>
 								<select class="form-control" name="tipe" id="tipe">
-									<option value="<?= $sessbank ?>" selected><?= $databank['kode']; ?></option>
+									<option value="<?= $sessbank ?>" selected><?= $sessbank ?></option>
 								</select>
 								<span class="form-text text-muted"><?php echo ($error['tipe']) ? $error['tipe'] : ''; ?></span>
 							</div>
