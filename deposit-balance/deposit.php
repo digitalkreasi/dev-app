@@ -7,8 +7,6 @@ if (isset($_POST['pilihbank'])) {
 	$namabank = $_POST['pilihbank'];
 	$_SESSION['bank'] = $bank;
 	$_SESSION['bankname'] = $namabank;
-	$sessbank = $_SESSION['bank'];
-	$sessnamabank = $_SESSION['bankname'];
 }
 if (isset($_POST['buat'])) {
 	require '../lib/session_login.php';
@@ -149,15 +147,6 @@ require("../lib/header.php");
 								<div class="input-group">
 									<div class="input-group-prepend"><span class="input-group-text text-primary">Rp</span></div>
 									<input type="number" class="form-control" name="saldo" value="0" id="total" readonly>
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-xl-3 col-lg-3 col-form-label">Pengecekkan</label>
-							<div class="col-lg-9 col-xl-6">
-								<div class="input-group">
-									<div class="input-group-prepend"><span class="input-group-text text-primary">Rp</span></div>
-									<input type="text" class="form-control" name="test" value="<?= $sessbank . $sessnamabank ?>" id="total" readonly>
 								</div>
 							</div>
 						</div>
