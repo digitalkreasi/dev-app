@@ -10,6 +10,15 @@ if (isset($_POST['pilihbank'])) {
 }
 if (isset($_POST['buat'])) {
 	require '../lib/session_login.php';
+	// Initialising a DateTime
+	date_default_timezone_set('Asia/Jakarta');
+	$dt = date('Y-m-d H:i');
+	$dtobject = date_create($dt);
+	$dtobject->add(new DateInterval('P1D'));
+
+	// Getting the new date after addition
+	$expdate = $dtobject->format('Y-m-d H:i');
+
 	$post_bank = $conn->real_escape_string(filter($_POST['tipe']));
 	$post_jumlah = $conn->real_escape_string(filter($_POST['jumlah']));
 	$post_pin = $conn->real_escape_string(filter($_POST['pin']));
@@ -36,6 +45,44 @@ if (isset($_POST['buat'])) {
 		if ($count_depo >= 1) {
 			$_SESSION['hasil'] = array('alert' => 'danger', 'pesan' => 'Ups, Kamu Masih Memiliki Isi Saldo Yang Berstatus Pending.<script>swal("Ups Gagal!", "Kamu Masih Memiliki Isi Saldo Berstatus Pending.", "error");</script>');
 		} else {
+			$ch = curl_init();
+			$secret_key = "JDJ5JDEzJEFsRE1CZnl3dWJlRlBUcUZub1RmT3VtRGRsTDlWM2JUMkNiVVVrZE9xaEFMWHNaM3hLWnZL";
+
+			curl_setopt($ch, CURLOPT_URL, "https://bigflip.id/big_sandbox_api/v2/pwf/bill");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+			curl_setopt($ch, CURLOPT_POST, TRUE);
+
+			$payloads = [
+				"title" => "Deposit Saldo Sebesar Rp " . $post_jumlah . "",
+				"amount" => $post_jumlah,
+				"type" => "SINGLE",
+				"expired_date" => $expdate,
+				"redirect_url" => "https://digitalkreasigroup.com/indofazz/",
+				"is_address_required" => 0,
+				"is_phone_number_required" => 0,
+				"step" => 3,
+				"sender_name" => "$sess_fullname",
+				"sender_email" => "$sess_email",
+				"sender_bank" => "" . $_SESSION['bank'] . "",
+				"sender_bank_type" => "virtual_account"
+			];
+
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payloads));
+
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+				"Content-Type: application/x-www-form-urlencoded"
+			));
+
+			curl_setopt($ch, CURLOPT_USERPWD, $secret_key . ":");
+
+			$response = curl_exec($ch);
+			curl_close($ch);
+
+			$hasil = json_decode($response, true);
+
+			header("location:" . $hasil['payment_url']);
 		}
 	}
 }
@@ -76,50 +123,6 @@ require("../lib/header.php");
 					</div>
 				</div>
 				<div class="kt-portlet__body">
-					<?php
-					$cek_depo = $conn->query("SELECT * FROM deposit WHERE username = '$sess_username' AND status = 'Pending' ORDER BY id DESC");
-					while ($data_depo = $cek_depo->fetch_assoc()) {
-					?>
-						<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-						<script>
-							var url = "<?php echo $config['web']['url'] ?>deposit-balance/invoice?kode_deposit=<?php echo $data_depo['kode_deposit']; ?>"; // URL Tujuan
-							var count = 1; // dalam detik
-							function countDown() {
-								if (count > 0) {
-									count--;
-									var waktu = count + 1;
-									setTimeout("countDown()", 1000);
-								} else {
-									<?php
-									if ($data_depo['provider'] == 'Payment Gateway') {
-									?>
-										window.location.href = "<?= $data_depo['checkout_url'] ?>";
-									<?php
-									} else {
-									?>
-										window.location.href = url;
-									<?php
-									}
-									?>
-
-								}
-							}
-							countDown();
-						</script>
-					<?php
-					}
-					?>
-					<?php
-					if (isset($_SESSION['hasil'])) {
-					?>
-						<div class="alert alert-<?php echo $_SESSION['hasil']['alert'] ?> alert-dismissible" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<?php echo $_SESSION['hasil']['pesan'] ?><div id="respon"></div>
-						</div>
-					<?php
-						unset($_SESSION['hasil']);
-					}
-					?>
 					<form class="form-horizontal" role="form" method="POST">
 						<div class="form-group row">
 							<label class="col-xl-3 col-lg-3 col-form-label">Tipe</label>
