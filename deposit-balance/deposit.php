@@ -93,10 +93,6 @@ if (isset($_POST['buat'])) {
 			$url = $hasil['payment_url'];
 			$bank = $hasil['bill_payment']['sender_bank'];
 			$bank_name = $_SESSION['bankname'];
-
-			$sqltambahdeposit = "INSERT INTO deposit VALUES ('','$kode','$sess_username','$tipe_transfer','$provider','','','','$post_jumlah','$post_jumlah',
-			'$tipe_saldo','$jenis','$status','2023-07-20','13:11:29', '$bank',$post_jumlah,'','$url','BANK')";
-			$execquerydeposit = mysqli_query($conn, $sqltambahdeposit);
 		}
 	}
 }
