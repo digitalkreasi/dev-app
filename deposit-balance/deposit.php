@@ -83,16 +83,6 @@ if (isset($_POST['buat'])) {
 			$hasil = json_decode($response, true);
 
 			header("location:" . $hasil['payment_url']);
-
-			$kode = $hasil['link_id'];
-			$tipe_saldo = "saldo_top_up";
-			$tipe_transfer = "Transfer Bank";
-			$provider = "Payment Gateway";
-			$jenis = "Otomatis";
-			$status = "Pending";
-			$url = $hasil['payment_url'];
-			$bank = $hasil['bill_payment']['sender_bank'];
-			$bank_name = $_SESSION['bankname'];
 		}
 	}
 }
