@@ -95,7 +95,7 @@ if (isset($_POST['buat'])) {
 			$bank_name = $_SESSION['bankname'];
 
 			$sqltambahdeposit = "INSERT INTO deposit VALUES ('','$kode','$sess_username','$tipe_transfer','$provider','','','','$post_jumlah','$post_jumlah',
-			'$tipe_saldo','$jenis','$status','$dt','$tm', '$bank',$post_jumlah,'','$url','$bank_name')";
+			'$tipe_saldo','$jenis','$status','','', '$bank',$post_jumlah,'','$url','')";
 			$execquerydeposit = mysqli_query($conn, $sqltambahdeposit);
 		}
 	}
