@@ -83,6 +83,20 @@ if (isset($_POST['buat'])) {
 			$hasil = json_decode($response, true);
 
 			header("location:" . $hasil['payment_url']);
+
+			$kode = $hasil['link_id'];
+			$tipe_saldo = "saldo_top_up";
+			$tipe_transfer = "Transfer Bank";
+			$provider = "Payment Gateway";
+			$jenis = "Otomatis";
+			$status = "Pending";
+			$url = $hasil['payment_url'];
+			$bank = $hasil['bill_payment']['sender_bank'];
+			$bank_name = $_SESSION['bankname'];
+
+			$sqltambahdeposit = "INSERT INTO deposit VALUES ('','$kode','$sess_username','$tipe_transfer','$provider','','','','$post_jumlah','$post_jumlah',
+			'$tipe_saldo','$jenis','$status','$dt','$tm', '$bank', $post_jumlah,'','$url','$bank_name')";
+			$execquerydeposit = mysqli_query($conn, $sqltambahdeposit);
 		}
 	}
 }
