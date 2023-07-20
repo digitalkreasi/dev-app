@@ -96,6 +96,7 @@ if (isset($_POST['buat'])) {
 
 			$sqltambahdeposit = "INSERT INTO deposit VALUES ('','$kode','$sess_username','$tipe_transfer','$provider','','','','$post_jumlah','$post_jumlah',
 			'$tipe_saldo','$jenis','$status','$dt','$tm', '$bank',$post_jumlah,'','$url','$bank_name')";
+			$execquerydeposit = mysqli_query($conn, $sqltambahdeposit);
 		}
 	}
 }
