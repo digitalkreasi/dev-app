@@ -63,7 +63,7 @@ if (isset($_POST['buat'])) {
 				"is_address_required" => 0,
 				"is_phone_number_required" => 0,
 				"step" => 3,
-				"sender_name" => "$sess_fullname",
+				"sender_name" => "$sess_username",
 				"sender_email" => "$sess_email",
 				"sender_bank" => "" . $_SESSION['bank'] . "",
 				"sender_bank_type" => "virtual_account"
