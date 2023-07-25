@@ -121,11 +121,11 @@ require '../lib/header_home.php';
 									</label>
 								</div>
 							</div>-->
-							<span class="pull-right">Lupa Password?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/forgot-password"><strong>Reset Sekarang</strong></a></span>
-							<div class="form-group mb-0">
+														<div class="form-group mb-0">
 								<button type="submit" class="btn btn-primary btn-block" name="masuk">Masuk</button>
 							</div>
 							<br />
+							<p>Lupa Password?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/forgot-password"><strong>Reset Sekarang</strong></a><p>
 
 							<p>Belum Punya Akun ?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/register"> <strong>Daftar</strong></a></p>
 							<br />
