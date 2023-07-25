@@ -73,9 +73,9 @@ require '../lib/header_home.php';
 <div class="login-2" style="background-image: url('');">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 d-none d-sm-block">
+			<!--<div class="col-md-6 d-none d-sm-block">
 				<img src="<?php echo $config ['web']['url']?>assets/media/logos/indofazz.png" alt="Image" class="img-fluid" style="max-width: 100% !important;">
-			</div>
+			</div>-->
 			<div class="col-lg-6">
 				<div class="form-section">
 					<div style="margin-bottom:15px">
