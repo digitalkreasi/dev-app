@@ -86,6 +86,7 @@ require '../lib/header_home.php';
 							</a>
 						</div>
 					</div>
+					<br />
 					<?php
 					if (isset($_SESSION['hasil'])) {
 					?>
@@ -121,12 +122,12 @@ require '../lib/header_home.php';
 									</label>
 								</div>
 							</div>-->
-														<div class="form-group mb-0">
+							<div class="form-group mb-0">
 								<button type="submit" class="btn btn-primary btn-block" name="masuk">Masuk</button>
 							</div>
 							<br />
 							<p>Lupa Password?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/forgot-password"><strong>Reset Sekarang</strong></a><p>
-
+								<br />
 							<p>Belum Punya Akun ?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/register"> <strong>Daftar</strong></a></p>
 							<br />
 							<p>Belum Verifikasi Akun ?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/verification-account"> <strong>Verifikasi Disini</strong></a></p>
