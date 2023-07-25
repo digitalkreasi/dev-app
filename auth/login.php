@@ -80,7 +80,7 @@ require '../lib/header_home.php';
 				<div class="form-section">
 					<div style="margin-bottom:15px">
 						<div class="">
-							<h2>Masuk</h2>
+							<h2>Selamat Datang Kembali</h2>
 							<a href="<?php echo $config ['web']['url']?>auth/login">
 								<img src="<?php echo $config ['web']['url']?>assets/media/logos/indofazz.png" width="220px" class="img" alt="solusimedia">
 							</a>
@@ -113,15 +113,15 @@ require '../lib/header_home.php';
 								<i class="flaticon-password"></i>
 								<small class="text-danger font-13 pull-right"><?php echo ($error['password']) ? $error['password'] : ''; ?></small>
 							</div>
-							<div class="checkbox clearfix">
+							<!--<div class="checkbox clearfix">
 								<div class="form-check checkbox-theme">
 									<input class="form-check-input" type="checkbox" value="1" id="rememberMe" name="remember">
 									<label class="form-check-label" for="rememberMe">
 										Ingat Saya
 									</label>
 								</div>
-								<span class="pull-right"><a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/forgot-password"><strong>Lupa Kata Sandi?</strong></a></span>
-							</div>
+							</div>-->
+							<span class="pull-right">Lupa Password?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/forgot-password"><strong>Reset Sekarang</strong></a></span>
 							<div class="form-group mb-0">
 								<button type="submit" class="btn btn-primary btn-block" name="masuk">Masuk</button>
 							</div>
