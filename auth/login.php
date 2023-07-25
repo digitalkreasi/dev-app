@@ -74,15 +74,15 @@ require '../lib/header_home.php';
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 d-none d-sm-block">
-				<img src="https://okepedia.my.id/assets/media/logos/logooke.png" alt="Image" class="img-fluid" style="max-width: 100% !important;">
+				<img src="<?php echo $config ['web']['url']?>assets/media/logos/indofazz.png" alt="Image" class="img-fluid" style="max-width: 100% !important;">
 			</div>
 			<div class="col-lg-6">
 				<div class="form-section">
 					<div style="margin-bottom:15px">
 						<div class="">
 							<h2>Masuk</h2>
-							<a href="https://okepedia.my.id/public/auth/login">
-								<img src="https://okepedia.my.id/assets/media/logos/logooke.png" width="220px" class="img" alt="solusimedia">
+							<a href="<?php echo $config ['web']['url']?>auth/login">
+								<img src="<?php echo $config ['web']['url']?>assets/media/logos/indofazz.png" width="220px" class="img" alt="solusimedia">
 							</a>
 						</div>
 					</div>
