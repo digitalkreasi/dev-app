@@ -107,17 +107,18 @@ if (isset($_SESSION['user'])) {
         <div class="row">
             <div class="product-catagory-wrap col-lg-6">
                 <div role="alert" class="alert alert-info alert-dismissible fade show mt-2"><i class="fas fa-bullhorn fa-3x"></i>
-                <a class="text-white" href="">&nbsp; Hanya panel demo bosku <br>&nbsp; Silahkan dicoba!</a>
-                </ol><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <a class="text-white" href="">&nbsp; Hanya panel demo bosku <br>&nbsp; Silahkan dicoba!</a>
+                    </ol><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
                 <!--
                 <div role="alert" class="alert alert-info alert-dismissible fade show mt-2">
                 <a class="text-white" href="https://solusimedia.com/public/page/news-details?id=11">[INFORMASI] Maintenance Sistem: Rabu, 14 Juli 2021 00:00-06:00 WIB. Klik untuk lebih detail.</a>
                 </ol><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>-->
-                
+
                 <div class="shadow mt-2" style="border-radius: 7px">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner" style="border-radius: 7px;">
-                            
+
                             <div class="carousel-item active">
                                 <a href="<?php echo $config['web']['url'] ?>deposit-balance"><img class="d-block w-100" src="assets/media/slide/5614000-03.png" alt="Slide Pertama"></a>
                             </div>
@@ -148,11 +149,11 @@ if (isset($_SESSION['user'])) {
                     </div><br>
                     <div class="row mt-2">
                         <div class="col-3">
-                        <div class=" mb-3 catagory-card">
-                            <a href="<?php echo $config['web']['url'] ?>order/social-media"><img src="assets/media/icon-pay/sosmed.png" alt="">
-                            <span>Sosmed</span></a>
+                            <div class=" mb-3 catagory-card">
+                                <a href="<?php echo $config['web']['url'] ?>order/social-media"><img src="assets/media/icon-pay/sosmed.png" alt="">
+                                    <span>Sosmed</span></a>
+                            </div>
                         </div>
-                    </div>
                         <div class="col-3">
                             <div class="mb-3 catagory-card">
                                 <a href="<?php echo $config['web']['url'] ?>order/pulsa-reguler"><img src="assets/media/icon-pay/pulsa.png" alt="">

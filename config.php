@@ -9,20 +9,20 @@ if ($maintenance == 1) {
 $config['db'] = array(
 	'host' => 'localhost',
 	'name' => 'indt5495_app',
-	'username' => 'indt5495_app',
-	'password' => 'Rama1234.'
+	'username' => 'root',
+	'password' => ''
 );
 
-mysqli_real_escape_string($conn = mysqli_connect($config['db']['host'], $config['db']['username'], $config['db']['password'], $config['db']['name']));
+$conn = mysqli_connect($config['db']['host'], $config['db']['username'], $config['db']['password'], $config['db']['name']);
 if (!$conn) {
 	die("Koneksi Gagal : " . mysqli_connect_error());
 }
 $config['web'] = array(
-	'url' => 'https://digitalkreasigroup.com/indofazz/' // contoh: htdtp://sdmin.com/
+	'url' => 'https://localhost/dev-app/' // contoh: htdtp://sdmin.com/
 );
 // date & time
 $date = date("Y-m-d");
 $time = date("H:i:s");
 $dt = date('Y/m/d H:i:s');
 require("lib/function.php");
-require("lib/setting.php");
+// require("lib/setting.php");
