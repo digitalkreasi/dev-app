@@ -1,4 +1,5 @@
 /*!
+ * TEST
  * Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors
  * Copyright 2011-2017 Twitter, Inc.
@@ -6,6 +7,7 @@
  */
 :root {
     --blue: #007bff;
+    --blue-sec: #00AFEF; 
     --indigo: #6610f2;
     --purple: #6f42c1;
     --pink: #e83e8c;
@@ -31,8 +33,8 @@
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
-    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --font-family-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Montserrat", sans-serif;
+    --font-family-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 @media print {
@@ -2353,17 +2355,23 @@ select.form-control:focus::-ms-value {
 a.btn.disabled, fieldset[disabled] a.btn {
     pointer-events: none
 }
+.btn-login {
+    color: #fff;
+    background-color: #00AFEF;
+}
 
+.btn-login:hover {
+    color: #fff;
+    background-color: #00AFEF;
+}
 .btn-primary {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: #00AFEF;
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc
+    background-color: #00AFEF;
 }
 
 .btn-primary.focus, .btn-primary:focus {

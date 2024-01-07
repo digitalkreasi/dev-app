@@ -2,6 +2,7 @@
 session_start();
 include "../config.php";
 date_default_timezone_set('Asia/Jakarta');
+print_r ($_SESSION);
 $date = date('Y/m/d');
 $time = date('H:i:s');
 $dt = date('Y/m/d H:i:s');
@@ -9,7 +10,7 @@ if (isset($_SESSION['user'])) {
     header("Location: " . $config['web']['url']);
     exit;
 } else {
-    if (isset($_POST['login'])) {
+    if (isset($_POST['verifikasi'])) {
         $username = $_SESSION['username'];
         $angkaotp = $_POST['pin1'] . $_POST['pin2'] . $_POST['pin3'] . $_POST['pin4'] . $_POST['pin5'] . $_POST['pin6'];
         $qlogin = "SELECT * FROM users WHERE username = '$username'";
@@ -21,6 +22,7 @@ if (isset($_SESSION['user'])) {
 
         if ($angkaotp === $pinDatabase) {
             $_SESSION['user'] = $dapatotp;
+            $_SESSION['login'] = true;
             if (isset($_SESSION['cookie'])) {
                 setcookie('cookie_token', $_SESSION['cookie'], time() + 60 * 60 * 24 * 365, '/');
             }
@@ -32,6 +34,7 @@ if (isset($_SESSION['user'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +56,7 @@ if (isset($_SESSION['user'])) {
     .container {
         max-width: 400px;
         width: 100%;
-        height: 90vh; /* Menggunakan unit vh untuk tinggi container */
+        height: 100vh; /* Menggunakan unit vh untuk tinggi container */
         margin: 0 auto;
         background-color: #fff;
         display: flex;
@@ -137,15 +140,16 @@ if (isset($_SESSION['user'])) {
             <h2>Masukkan PIN</h2>
             <p>Masukkan 6 digit PIN kamu</p>
         <div class="pin-input-container">
-        <input type="password" id="pin1" name="pin1" maxlength="1" oninput="handlePinInput(1)" onkeydown="handlePinKeyDown(event, 1)" required autofocus>
-        <input type="password" id="pin2" name="pin2" maxlength="1" oninput="handlePinInput(2)" onkeydown="handlePinKeyDown(event, 2)" required>
-        <input type="password" id="pin3" name="pin3" maxlength="1" oninput="handlePinInput(3)" onkeydown="handlePinKeyDown(event, 3)" required>
-        <input type="password" id="pin4" name="pin4" maxlength="1" oninput="handlePinInput(4)" onkeydown="handlePinKeyDown(event, 4)" required>
-        <input type="password" id="pin5" name="pin5" maxlength="1" oninput="handlePinInput(5)" onkeydown="handlePinKeyDown(event, 5)" required>
-        <input type="password" id="pin6" name="pin6" maxlength="1" oninput="handlePinInput(6)" onkeydown="handlePinKeyDown(event, 6)" required>
+            <input type="hidden" name="csrf_token" value="<?php echo $config['csrf_token'] ?>">
+        <input type="password" inputmode="numeric" id="pin1" name="pin1" maxlength="1" oninput="handlePinInput(1)" onkeydown="handlePinKeyDown(event, 1)" required autofocus>
+        <input type="password" inputmode="numeric" id="pin2" name="pin2" maxlength="1" oninput="handlePinInput(2)" onkeydown="handlePinKeyDown(event, 2)" required>
+        <input type="password" inputmode="numeric" id="pin3" name="pin3" maxlength="1" oninput="handlePinInput(3)" onkeydown="handlePinKeyDown(event, 3)" required>
+        <input type="password" inputmode="numeric" id="pin4" name="pin4" maxlength="1" oninput="handlePinInput(4)" onkeydown="handlePinKeyDown(event, 4)" required>
+        <input type="password" inputmode="numeric" id="pin5" name="pin5" maxlength="1" oninput="handlePinInput(5)" onkeydown="handlePinKeyDown(event, 5)" required>
+        <input type="password" inputmode="numeric" id="pin6" name="pin6" maxlength="1" oninput="handlePinInput(6)" onkeydown="handlePinKeyDown(event, 6)" required>
         </div>
         <br>
-        <input type="submit" value="Submit" id="login" name="login" style="display: none;">
+        <input type="submit" value="Submit" id="verifikasi" name="verifikasi" style="display: none;">
     </form>
     <a href="reset-pin">Lupa PIN?</a>
     </div>
@@ -158,7 +162,7 @@ if (isset($_SESSION['user'])) {
       
       if (sanitizedValue.length === 1) {
           if (pinIndex === 6) {
-              var submitBtn = document.getElementById("login");
+              var submitBtn = document.getElementById("verifikasi");
               submitBtn.click();
       }else if(pinIndex < 6){
         focusNextPinInput(pinIndex);  

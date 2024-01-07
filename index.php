@@ -1,159 +1,131 @@
 <?php
 session_start();
 require("config.php");
-
+print_r ($_SESSION);
 if (isset($_COOKIE['cookie_token'])) {
-    $data = $conn->query("SELECT * FROM users WHERE cookie_token='" . $_COOKIE['cookie_token'] . "'");
-    if (mysqli_num_rows($data) > 0) {
-        $hasil = mysqli_fetch_assoc($data);
-        $_SESSION['user'] = $hasil;
+  $data = $conn->query("SELECT * FROM users WHERE cookie_token='" . $_COOKIE['cookie_token'] . "'");
+  if (mysqli_num_rows($data) > 0) {
+    $hasil = mysqli_fetch_assoc($data);
+    $_SESSION['user'] = $hasil;
+
+    // Check if PIN verification is complete
+    $pin_verified = $hasil['pin_verified'];
+
+    // Redirect to dashboard page if PIN verification is complete
+    if ($pin_verified) {
+      header("Location: " . $config['web']['url'] . "dashboard");
+      exit;
     }
+  }
 }
 
-
 if (isset($_SESSION['user'])) {
-    $sess_username = $_SESSION['user']['username'];
-    $check_user = $conn->query("SELECT * FROM users WHERE username = '$sess_username'");
-    $data_user = $check_user->fetch_assoc();
-    $check_username = $check_user->num_rows;
-    if ($check_username == 0) {
-        header("Location: " . $config['web']['url'] . "logout.php");
-    } else if ($data_user['status'] == "Tidak Aktif") {
-        header("Location: " . $config['web']['url'] . "logout.php");
-    }
-
-    // Data Grafik Pesanan Sosial Media
-
-    $check_order_today = $conn->query("SELECT * FROM pembelian_sosmed WHERE date ='$date' and user = '$sess_username'");
-
-    $oneday_ago = date('Y-m-d', strtotime("-1 day"));
-    $check_order_oneday_ago = $conn->query("SELECT * FROM pembelian_sosmed WHERE date ='$oneday_ago' and user = '$sess_username'");
-
-    $twodays_ago = date('Y-m-d', strtotime("-2 day"));
-    $check_order_twodays_ago = $conn->query("SELECT * FROM pembelian_sosmed WHERE date ='$twodays_ago' and user = '$sess_username'");
-
-    $threedays_ago = date('Y-m-d', strtotime("-3 day"));
-    $check_order_threedays_ago = $conn->query("SELECT * FROM pembelian_sosmed WHERE date ='$threedays_ago' and user = '$sess_username'");
-
-    $fourdays_ago = date('Y-m-d', strtotime("-4 day"));
-    $check_order_fourdays_ago = $conn->query("SELECT * FROM pembelian_sosmed WHERE date ='$fourdays_ago' and user = '$sess_username'");
-
-    $fivedays_ago = date('Y-m-d', strtotime("-5 day"));
-    $check_order_fivedays_ago = $conn->query("SELECT * FROM pembelian_sosmed WHERE date ='$fivedays_ago' and user = '$sess_username'");
-
-    $sixdays_ago = date('Y-m-d', strtotime("-6 day"));
-    $check_order_sixdays_ago = $conn->query("SELECT * FROM pembelian_sosmed WHERE date ='$sixdays_ago' and user = '$sess_username'");
-
-    // Data Selesai
-
-    // Data Grafik Pesanan Top Up
-
-    $check_order_pulsa_today = $conn->query("SELECT * FROM pembelian_pulsa WHERE date ='$date' and user = '$sess_username'");
-
-    $oneday_ago = date('Y-m-d', strtotime("-1 day"));
-    $check_order_pulsa_oneday_ago = $conn->query("SELECT * FROM pembelian_pulsa WHERE date ='$oneday_ago' and user = '$sess_username'");
-
-    $twodays_ago = date('Y-m-d', strtotime("-2 day"));
-    $check_order_pulsa_twodays_ago = $conn->query("SELECT * FROM pembelian_pulsa WHERE date ='$twodays_ago' and user = '$sess_username'");
-
-    $threedays_ago = date('Y-m-d', strtotime("-3 day"));
-    $check_order_pulsa_threedays_ago = $conn->query("SELECT * FROM pembelian_pulsa WHERE date ='$threedays_ago' and user = '$sess_username'");
-
-    $fourdays_ago = date('Y-m-d', strtotime("-4 day"));
-    $check_order_pulsa_fourdays_ago = $conn->query("SELECT * FROM pembelian_pulsa WHERE date ='$fourdays_ago' and user = '$sess_username'");
-
-    $fivedays_ago = date('Y-m-d', strtotime("-5 day"));
-    $check_order_pulsa_fivedays_ago = $conn->query("SELECT * FROM pembelian_pulsa WHERE date ='$fivedays_ago' and user = '$sess_username'");
-
-    $sixdays_ago = date('Y-m-d', strtotime("-6 day"));
-    $check_order_pulsa_sixdays_ago = $conn->query("SELECT * FROM pembelian_pulsa WHERE date ='$sixdays_ago' and user = '$sess_username'");
-
-    // Data Selesai
-
-    // Data Grafik Pesanan Pascabayar
-    $check_order_pascabayar_today = $conn->query("SELECT * FROM pembelian_pascabayar WHERE date ='$date' and user = '$sess_username'");
-
-    $oneday_ago = date('Y-m-d', strtotime("-1 day"));
-    $check_order_pascabayar_oneday_ago = $conn->query("SELECT * FROM pembelian_pascabayar WHERE date ='$oneday_ago' and user = '$sess_username'");
-
-    $twodays_ago = date('Y-m-d', strtotime("-2 day"));
-    $check_order_pascabayar_twodays_ago = $conn->query("SELECT * FROM pembelian_pascabayar WHERE date ='$twodays_ago' and user = '$sess_username'");
-
-    $threedays_ago = date('Y-m-d', strtotime("-3 day"));
-    $check_order_pascabayar_threedays_ago = $conn->query("SELECT * FROM pembelian_pascabayar WHERE date ='$threedays_ago' and user = '$sess_username'");
-
-    $fourdays_ago = date('Y-m-d', strtotime("-4 day"));
-    $check_order_pascabayar_fourdays_ago = $conn->query("SELECT * FROM pembelian_pascabayar WHERE date ='$fourdays_ago' and user = '$sess_username'");
-
-    $fivedays_ago = date('Y-m-d', strtotime("-5 day"));
-    $check_order_pascabayar_fivedays_ago = $conn->query("SELECT * FROM pembelian_pascabayar WHERE date ='$fivedays_ago' and user = '$sess_username'");
-
-    $sixdays_ago = date('Y-m-d', strtotime("-6 day"));
-    $check_order_pascabayar_sixdays_ago = $conn->query("SELECT * FROM pembelian_pascabayar WHERE date ='$sixdays_ago' and user = '$sess_username'");
-
-    // Data Selesai
-
+  $sess_username = $_SESSION['user']['username'];
+  $check_user = $conn->query("SELECT * FROM users WHERE username = '$sess_username'");
+  $data_user = $check_user->fetch_assoc();
+  $check_username = $check_user->num_rows;
+  if ($check_username == 0) {
+    header("Location: " . $config['web']['url'] . "logout.php");
+  }
 } else {
-    $_SESSION['user'] = $data_user;
-    header("Location: " . $config['web']['url'] . "dashboard");
+  $_SESSION['user'] = $data_user;
+  header("Location: " . $config['web']['url'] . "auth/login");
 }
 
 include("lib/header_1.php");
 if (isset($_SESSION['user'])) {
+
 ?>
 
     <!-- Start Card Box Order -->
     <div class="kt-container">
+
         <div class="row">
             <div class="product-catagory-wrap col-lg-6">
-                <div role="alert" class="alert alert-info alert-dismissible fade show mt-2"><i class="fas fa-bullhorn fa-3x"></i>
-                    <a class="text-white" href="">&nbsp; Hanya panel demo bosku <br>&nbsp; Silahkan dicoba!</a>
-                    </ol><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
+                <div class="kt-widget kt-widget--user-profile-1">
+                        <div class="kt-widget__head">
+                            <div class="kt-widget__media" style="margin-right: 10px; margin left: 5px; margin-top:10px;">
+                                <img src="<?php echo $config['web']['url'] ?>assets/media/icon/fav-icon.png" alt="image">
+                            </div>
+                            <a style="margin-top: 20px; color: #fff;">
+                                Selamat Datang<strong style="font-size: 15px"><br><?php echo $data_user['nama_depan'] .' '.$data_user['nama_belakang']; ?></strong>
+                                <i class="flaticon2-correct kt-font-warning"></i>
+                            </a>
+                        </div>
+                    </div>
                 <!--
                 <div role="alert" class="alert alert-info alert-dismissible fade show mt-2">
-                <a class="text-white" href="https://solusimedia.com/public/page/news-details?id=11">[INFORMASI] Maintenance Sistem: Rabu, 14 Juli 2021 00:00-06:00 WIB. Klik untuk lebih detail.</a>
+                <a class="text-white" href="">[INFORMASI] Maintenance Sistem: Hari, Tanggal 00:00-06:00 WIB. Klik untuk lebih detail.</a>
                 </ol><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>-->
-
-                <div class="shadow mt-2" style="border-radius: 7px">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner" style="border-radius: 7px;">
-
-                            <div class="carousel-item active">
-                                <a href="<?php echo $config['web']['url'] ?>deposit-balance"><img class="d-block w-100" src="assets/media/slide/5614000-03.png" alt="Slide Pertama"></a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="<?php echo $config['web']['url'] ?>price-list/social-media"><img class="d-block w-100" src="assets/media/slide/5614000-02.png" alt="Slide Pertama"></a>
+                
+                    <div class="card shadow mt-2">
+                        <div class="kt-portlet__head" style="padding: 5px 25px; border-bottom: 1px solid #ebedf2;">
+                            <div class="kt-portlet__head-label">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div style="display: flex:1; align-items: center;">
+                                        <strong style="font-size: 13px">Fazz Saldo</strong> <br>
+                                        <strong style="font-size: 15px">Rp. <?php echo number_format($data_user['saldo_top_up'], 0, ',', '.'); ?></strong>
+                                    </div>
+                                    <div style="border-left: 1px solid #ebedf2; height: 45px; margin-right:50px;"></div>
+                                    <div style="text-align: right;">
+                                        <strong style="font-size: 13px; text-align: left;">Fazz Poin:</strong><br>
+                                        <strong style="font-size: 15px; text-align: left;"><?php echo $data_user['koin']; ?></strong>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                             <div class="row mt-2">
+                        <div class="col-3">
+                            <div class="mb-3 catagory-card">
+                                <a href="<?php echo $config['web']['url'] ?>deposit-balance/"><img src="assets/media/icon/deposit.png" alt="" width="33" height="33" style="margin-bottom: 13px; margin-top:5px;">
+                                    <span>Deposit</span></a>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3 catagory-card">
+                                <a href="<?php echo $config['web']['url'] ?>order/paket-data-internet"><img src="assets/media/icon/poin.png" alt="" width="33" height="33" style="margin-bottom: 13px; margin-top:5px;">
+                                    <span>Tukar<br>Poin</span></a>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3 catagory-card">
+                                <a href="#" data-toggle="modal" data-target="#alltransfer" onclick="showBelowModal()">
+                                    <img src="assets/media/icon/transfer.png" alt="" width="33" height="33" style="margin-bottom: 13px; margin-top: 5px;">
+                                    <span>Transfer</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3 catagory-card">
+                                <a href="<?php echo $config['web']['url'] ?>order/saldo-emoney"><img src="assets/media/icon/cs.png" alt="" width="33" height="33" style="margin-bottom: 13px; margin-top:5px;">
+                                    <br>
+                                    <span>CS</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <br>
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" style="border-radius: 7px;">
+                            
+                            <div class="carousel-item active">
+                                <a href="<?php echo $config['web']['url'] ?>deposit-balance"><img class="d-block w-100" src="assets/media/slide/banner-2.png" alt="Slide Pertama"></a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="<?php echo $config['web']['url'] ?>price-list/social-media"><img class="d-block w-100" src="assets/media/slide/banner-3.png" alt="Slide Pertama"></a>
+                            </div>
+                        </div>
+                        <!--<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Sebelumnya</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Selanjutnya</span>
-                        </a>
-                    </div>
-                </div>
+                        </a>-->
+                <br>
                 <div class="card shadow mt-2">
-                    <div class="kt-portlet__head" style="padding: 5px 25px;border-bottom: 1px solid #ebedf2;">
-                        <div class="kt-portlet__head-label">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a><strong style="font-size:13px"><?php echo $data_user['nama']; ?></strong> <i class="flaticon2-correct kt-font-warning"></i><br>
-                                    <strong style="font-size:15px">Saldo : Rp. <?php echo number_format($data_user['saldo_top_up'], 0, ',', '.'); ?></strong></a>
-                                <a href="<?php echo $config['web']['url'] ?>deposit-balance" class="btn btn-primary mt-2">
-                                    Deposit</a>
-                            </div>
-                        </div>
-                    </div><br>
                     <div class="row mt-2">
-                        <div class="col-3">
-                            <div class=" mb-3 catagory-card">
-                                <a href="<?php echo $config['web']['url'] ?>order/social-media"><img src="assets/media/icon-pay/sosmed.png" alt="">
-                                    <span>Sosmed</span></a>
-                            </div>
-                        </div>
                         <div class="col-3">
                             <div class="mb-3 catagory-card">
                                 <a href="<?php echo $config['web']['url'] ?>order/pulsa-reguler"><img src="assets/media/icon-pay/pulsa.png" alt="">
@@ -198,6 +170,63 @@ if (isset($_SESSION['user'])) {
                         </div>
                     </div>
                 </div>
+                </div>
+                <!-- Modal -->
+<div class="modal fade" id="alltransfer" tabindex="-1" role="dialog" aria-labelledby="alltransfer">
+    <div class="modal-dialog" role="document" style="position: absolute; bottom: 0;">
+        <div class="modal-content">
+            <div class="kt-container mt-2">
+                <p style="font-weight: 600; font-size: 15px; text-align: center; margin-top:5px; color:#000;">Metode Transfer</p>
+                <div class="row">
+                    <!-- Baris Pertama -->
+                    <div class="col-lg-6" style="border: 3px solid #ebedf2; border-radius: 5px; margin-bottom: 10px;">
+                        <div class="row mt-2">
+                            <div class="col-6" style="display: flex; align-items: center; padding: 10px; box-sizing:;">
+                                <a href="<?php echo $config['web']['url'] ?>order/pulsa-reguler"></a>
+                                <div class="mb-3 catagory-card" style="display: flex; align-items: center; flex-wrap: nowrap; text-align: left;">
+                                    <img src="assets/media/icon/user-fazz.png" alt="" style="width: 45px; height: 50px; margin-right: 10px;">
+                                    <a href="#" style="text-decoration: none; color: #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        <strong style="font-size:13px;">Akun indofazz</strong><br>
+                                        <div style="border-bottom: 3px solid #ebedf2; margin-top:5px; margin-bottom:5px; width:230px;"></div>
+                                        Kirim Saldo ke Sesama Pengguna<br> indofazz
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <!-- Baris Kedua -->
+                    <div class="col-lg-6" style="border: 3px solid #ebedf2; border-radius: 5px; margin-bottom: 10px;">
+                        <div class="row mt-2">
+                            <div class="col-6" style="display: flex; align-items: center; padding: 10px; box-sizing:;">
+                                <a href="<?php echo $config['web']['url'] ?>order/pulsa-reguler"></a>
+                                <div class="mb-3 catagory-card" style="display: flex; align-items: center; flex-wrap: nowrap; text-align: left;">
+                                    <img src="assets/media/icon/bank.png" alt="" style="width: 45px; height: 50px; margin-right: 10px;">
+                                    <a href="#" style="text-decoration: none; color: #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        <strong style="font-size:13px;">Rekening Bank</strong><br>
+                                        <div style="border-bottom: 3px solid #ebedf2; margin-top:5px; margin-bottom:5px; width:230px;"></div>
+                                        Kirim Saldo ke Rekening Bank
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fungsi untuk menampilkan modal di bawah saat tombol diklik
+    function showBelowModal() {
+    $('#alltransfer').modal('show');
+    $('.modal').css('top', 'auto');
+    $('.modal').css('bottom', '0');
+}
+</script>
+
+
+                <!-- End Modal Transfer -->
                 <!-- Start Modal Kategori -->
                 <div class="modal fade" id="allkategori" tabindex="-1" role="dialog" aria-labelledby="allkategoriLabel">
                     <div class="modal-dialog" role="document">
@@ -206,12 +235,6 @@ if (isset($_SESSION['user'])) {
                                 <div class="row">
                                     <div class="product-catagory-wrap col-lg-12">
                                         <div class="row mt-2">
-                                            <!--<div class="col-3">
-                                                <div class=" mb-3 catagory-card">
-                                                    <a href="<?php echo $config['web']['url'] ?>order/social-media"><img src="assets/media/icon-pay/sosmed.png" alt="">
-                                                        <span>Sosmed</span></a>
-                                                </div>
-                                            </div>-->
                                             <div class="col-3">
                                                 <div class="mb-3 catagory-card">
                                                     <a href="<?php echo $config['web']['url'] ?>order/pulsa-reguler"><img src="assets/media/icon-pay/pulsa.png" alt="">
@@ -418,143 +441,6 @@ if (isset($_SESSION['user'])) {
                     </div>
                 </div>
                 </div><br>-->
-            </div>
-            <div class="cta-area col-lg-6">
-                <div class="kt-portlet mt-2">
-                    <div class="kt-portlet__head">
-                        <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">
-                                <i class="flaticon2-time text-primary"></i>
-                                10 Riwayat Pesanan Terakhir Kamu
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="kt-portlet__body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered nowrap m-0">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Via</th>
-                                        <th>Tanggal & Waktu</th>
-                                        <th>Nama Layanan</th>
-                                        <th>Harga</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $no = 1;
-                                    $cek_pesanan = $conn->query("SELECT * FROM semua_pembelian WHERE user = '$sess_username' ORDER BY id DESC LIMIT 10"); // edit
-                                    while ($data_pesanan = $cek_pesanan->fetch_assoc()) {
-                                        if ($data_pesanan['status'] == "Pending") {
-                                            $label = "warning";
-                                        } else if ($data_pesanan['status'] == "Processing") {
-                                            $label = "primary";
-                                        } else if ($data_pesanan['status'] == "Error") {
-                                            $label = "danger";
-                                        } else if ($data_pesanan['status'] == "Partial") {
-                                            $label = "danger";
-                                        } else if ($data_pesanan['status'] == "Success") {
-                                            $label = "success";
-                                        }
-                                    ?>
-                                        <tr>
-                                            <td><?php echo $no; ?></td>
-                                            <td align="center"><?php if ($data_pesanan['place_from'] == "API") { ?><i class="fa fa-random"></i><?php } else { ?><i class="flaticon-globe"></i><?php } ?></td>
-                                            <td><?php echo tanggal_indo($data_pesanan['date']); ?>, <?php echo $data_pesanan['time']; ?></td>
-                                            <td><?php echo $data_pesanan['layanan']; ?></td>
-                                            <td>Rp <?php echo number_format($data_pesanan['harga'], 0, ',', '.'); ?></td>
-                                            <td><span class="btn btn-<?php echo $label; ?> btn-elevate btn-pill btn-elevate-air btn-sm"><?php echo $data_pesanan['status']; ?></span></td>
-                                        </tr>
-                                    <?php
-                                        $no++;
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="kt-portlet">
-                    <div class="kt-portlet__head">
-                        <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">
-                                <i class="flaticon-graph text-primary"></i>
-                                Grafik Pesanan 7 Hari Terakhir
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="kt-portlet__body">
-                        <div class="chart" id="line-chart" style="height: 300px;"></div>
-                        <script>
-                            $(function() {
-                                "use strict";
-                                var line = new Morris.Area({
-                                    element: 'line-chart',
-                                    resize: true,
-                                    behaveLikeLine: true,
-                                    data: [{
-                                            w: '<?php echo $date; ?>',
-                                            x: <?php echo mysqli_num_rows($check_order_today); ?>,
-                                            y: <?php echo mysqli_num_rows($check_order_pulsa_today); ?>,
-                                            z: <?php echo mysqli_num_rows($check_order_pascabayar_today); ?>
-                                        },
-                                        {
-                                            w: '<?php echo $oneday_ago; ?>',
-                                            x: <?php echo mysqli_num_rows($check_order_oneday_ago); ?>,
-                                            y: <?php echo mysqli_num_rows($check_order_pulsa_oneday_ago); ?>,
-                                            z: <?php echo mysqli_num_rows($check_order_pascabayar_oneday_ago); ?>
-                                        },
-                                        {
-                                            w: '<?php echo $twodays_ago; ?>',
-                                            x: <?php echo mysqli_num_rows($check_order_twodays_ago); ?>,
-                                            y: <?php echo mysqli_num_rows($check_order_pulsa_twodays_ago); ?>,
-                                            z: <?php echo mysqli_num_rows($check_order_pascabayar_twodays_ago); ?>
-                                        },
-                                        {
-                                            w: '<?php echo $threedays_ago; ?>',
-                                            x: <?php echo mysqli_num_rows($check_order_threedays_ago); ?>,
-                                            y: <?php echo mysqli_num_rows($check_order_pulsa_threedays_ago); ?>,
-                                            z: <?php echo mysqli_num_rows($check_order_pascabayar_threedays_ago); ?>
-                                        },
-                                        {
-                                            w: '<?php echo $fourdays_ago; ?>',
-                                            x: <?php echo mysqli_num_rows($check_order_fourdays_ago); ?>,
-                                            y: <?php echo mysqli_num_rows($check_order_pulsa_fourdays_ago); ?>,
-                                            z: <?php echo mysqli_num_rows($check_order_pascabayar_fourdays_ago); ?>
-                                        },
-                                        {
-                                            w: '<?php echo $fivedays_ago; ?>',
-                                            x: <?php echo mysqli_num_rows($check_order_fivedays_ago); ?>,
-                                            y: <?php echo mysqli_num_rows($check_order_pulsa_fivedays_ago); ?>,
-                                            z: <?php echo mysqli_num_rows($check_order_pascabayar_fivedays_ago); ?>
-                                        },
-                                        {
-                                            w: '<?php echo $sixdays_ago; ?>',
-                                            x: <?php echo mysqli_num_rows($check_order_sixdays_ago); ?>,
-                                            y: <?php echo mysqli_num_rows($check_order_pulsa_sixdays_ago); ?>,
-                                            z: <?php echo mysqli_num_rows($check_order_pascabayar_sixdays_ago); ?>
-                                        }
-                                    ],
-                                    xkey: 'w',
-                                    ykeys: ['x', 'y', 'z'],
-                                    labels: ['Pesanan Sosial Media', 'Pesanan Top Up', 'Pesanan Pascabayar'],
-                                    lineColors: ['#f35864', '#3399ff', 'FFFF00'],
-                                    pointSize: 0,
-                                    lineWidth: 0,
-                                    hideHover: 'auto',
-                                    redraw: true,
-                                });
-                            });
-                        </script>
-                    </div>
-                </div>
             </div>
 
             <!-- Start News -->

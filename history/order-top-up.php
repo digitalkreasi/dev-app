@@ -39,17 +39,12 @@ require '../lib/header.php';
 				        <div class="kt-portlet__head-toolbar">
 					        <ul class="nav nav-pills nav-pills-sm nav-pills-label nav-pills-bold" role="tablist">
 					            <li class="nav-item">
-					                <a class="nav-link" href="https://solusimedia.com/public/history/order" role="tab">
+					                <a class="nav-link" href="https://digitalkreasigroup.com/indofazz/history/order" role="tab">
 					                Semua
 					                </a>
 					            </li>
 					            <li class="nav-item">
-					                <a class="nav-link" href="https://solusimedia.com/public/history/order-sosmed" role="tab">
-					                Sosial Media
-					                </a>
-					            </li>
-					            <li class="nav-item">
-					                <a href="https://solusimedia.com/public/history/order-top-up" aria-expanded="false" class="nav-link active">
+					                <a href="https://digitalkreasigroup.com/indofazz/order-top-up" aria-expanded="false" class="nav-link active">
 					                Top Up
 					                </a>  
 					            </li>

@@ -37,52 +37,64 @@ if (isset($_SESSION['user'])) {
 			$error['password'] = '*Kata Sandi Anda Salah';
 		} else {
 
-			if ($data_pengguna['status'] == "Tidak Aktif") {
-				$_SESSION['hasil'] = array('alert' => 'danger', 'pesan' => 'Ups, Akun Sudah Tidak Aktif.<script>swal("Gagal!", "Akun Sudah Tidak Aktif.", "error");</script>');
-			} else if ($data_pengguna['status_akun'] == "Belum Verifikasi") {
-				$_SESSION['hasil'] = array('alert' => 'danger', 'pesan' => 'Ups, Akun Kamu Belum Di Verifikasi.<script>swal("Gagal!", "Akun Kamu Belum Di Verifikasi.", "error");</script>');
-			} else {
+			if ($data_pengguna['status_akun'] == "Belum Verifikasi") {
+            $_SESSION['hasil'] = array(
+            'alert' => 'danger', 
+            'pesan' => 'Ups, Akun Kamu Belum Di Verifikasi. <script>
+                function verifikasiAkun() {
+                  swal({
+                    title: "Gagal!",
+                    text: "Akun Kamu Belum Di Verifikasi.",
+                    icon: "error",
+                    buttons: {
+                      verifikasi: {
+                        text: "Verifikasi Sekarang",
+                        value: "verifikasi",
+                      },
+                      cancel: "Batal",
+                    },
+                  }).then((value) => {
+                    if (value === "verifikasi") {
+                      window.location.href = "' . $config['web']['url'] . 'auth/verification-account";
+                    }
+                  });
+                }
+                verifikasiAkun();
+                </script>');
+            }   else {
 
 				if ($cek_pengguna_ulang == 1) {
-					if ($verif_password == true) {
-						$remember = isset($_POST['remember']) ? TRUE : false;
-						if ($remember == TRUE) {
-							$cookie_token = md5($username);
-							$conn->query("UPDATE users SET cookie_token='" . $cookie_token . "' WHERE username='" . $username . "'");
-							$_SESSION['cookie'] = $cookie_token;
-						}
-						$conn->query("INSERT INTO aktifitas VALUES ('','$username', 'Masuk', '" . get_client_ip() . "','$date','$time')");
-						$_SESSION['username'] = $data_pengguna['username'];
-						exit(header("Location: verifikasi_pin"));
-					} else {
-						$_SESSION['hasil'] = array('alert' => 'danger', 'pesan' => 'Ups, Gagal! Sistem Kami Sedang Mengalami Gangguan.<script>swal("Ups Gagal!", "Sistem Kami Sedang Mengalami Gangguan.", "error");</script>');
-					}
-				}
-			}
-		}
-	}
-}
+                            if ($verif_password == true) {
+                                    $cookie_token = md5($username);
+                                    $conn->query("UPDATE users SET cookie_token='" . $cookie_token . "' WHERE username='" . $username . "'");
+                                    $_SESSION['cookie'] = $cookie_token;
+                                    setcookie('cookie_token', $cookie_token, time() + 60 * 60 * 24 * 365, '/'); 
+                                    $_SESSION['username'] = $data_pengguna['username'];
+                                    exit(header("Location: verifikasi_pin"));
+                                } else {
+                                    $_SESSION['hasil'] = array('pesan' => '<script>swal("Ups Gagal!", "Pengguna Tidak Terdaftar", "error");</script>');
+                                }
+                            }
+                        }
+				    }
+			    }
+		    }
 
 require '../lib/header_home.php';
 
 ?>
 
-
-
 <!-- Start Page Login -->
 <div class="login-2" style="background-image: url('');">
 	<div class="container">
 		<div class="row">
-			<!--<div class="col-md-6 d-none d-sm-block">
-				<img src="<?php echo $config ['web']['url']?>assets/media/logos/indofazz.png" alt="Image" class="img-fluid" style="max-width: 100% !important;">
-			</div>-->
 			<div class="col-lg-6">
 				<div class="form-section">
 					<div style="margin-bottom:15px">
 						<div class="">
-							<h2>Selamat Datang Kembali</h2>
+							<h2 style="font-weight:600; font-size:20px; color:#000;">Selamat Datang Kembali</h2>
 							<a href="<?php echo $config ['web']['url']?>auth/login">
-								<img src="<?php echo $config ['web']['url']?>assets/media/logos/indofazz.png" width="220px" class="img" alt="solusimedia">
+								<img src="<?php echo $config ['web']['url']?>assets/media/logos/indofazz.png" width="180px" class="img" style="margin-top:10px;">
 							</a>
 						</div>
 					</div>
@@ -97,13 +109,9 @@ require '../lib/header_home.php';
 						unset($_SESSION['hasil']);
 					}
 					?>
-
-					<!--<div class="alert alert-success alert-dismissible">
-						<p>Belum Verifikasi Akun? <a href="<?php echo $config['web']['url'] ?>auth/verification-account"> <strong style="color:#354da1">Verifikasi Disini</strong></a></p>
-					</div>-->
 					<div class="login-inner-form">
 						<form class="form-horizontal" role="form" method="POST">
-							<input type="hidden" name="csrf_token" value="<?php echo $config['csrf_token'] ?>">
+						<input type="hidden" name="csrf_token" value="<?php echo $config['csrf_token'] ?>">
 							<div class="form-group form-box">
 								<input type="text" name="username" class="input-text" placeholder="Username" value="<?php echo $username; ?>" required>
 								<i class="flaticon-user"></i>
@@ -114,23 +122,14 @@ require '../lib/header_home.php';
 								<i class="flaticon-password"></i>
 								<small class="text-danger font-13 pull-right"><?php echo ($error['password']) ? $error['password'] : ''; ?></small>
 							</div>
-							<!--<div class="checkbox clearfix">
-								<div class="form-check checkbox-theme">
-									<input class="form-check-input" type="checkbox" value="1" id="rememberMe" name="remember">
-									<label class="form-check-label" for="rememberMe">
-										Ingat Saya
-									</label>
-								</div>
-							</div>-->
 							<div class="form-group mb-0">
 								<button type="submit" class="btn btn-primary btn-block" name="masuk">Masuk</button>
 							</div>
 							<br />
-							<p>Lupa Password?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/forgot-password"><strong>Reset Sekarang</strong></a><p>
+							<p>Lupa Password ?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/forgot-password"> <strong>Reset Sekarang</strong></a><p>
 								<br />
 							<p>Belum Punya Akun ?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/register"> <strong>Daftar</strong></a></p>
 							<br />
-							<p>Belum Verifikasi Akun ?<a class="text-primary" href="<?php echo $config['web']['url'] ?>auth/verification-account"> <strong>Verifikasi Disini</strong></a></p>
 						</form>
 					</div>
 				</div>

@@ -27,7 +27,6 @@
 
 		<!-- Page Vendors (used by this page) -->
 		<script src="<?php echo $config['web']['url'] ?>assets/plugins/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-		<script src="<?php echo $config['web']['url'] ?>assets/plugins/custom/gmaps/gmaps.js" type="text/javascript"></script>
 		<!-- End Page Vendors -->
 
 		<!-- Page Scripts (used by this page) -->

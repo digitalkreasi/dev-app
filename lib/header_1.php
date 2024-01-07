@@ -16,7 +16,7 @@ require 'csrf_token.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- Start Favicon Icon -->
-        <link rel="shortcut icon" href="<?php echo $config['web']['url'] ?>assets/media/logos/logooke1.png" />
+        <link rel="shortcut icon" href="<?php echo $config['web']['url'] ?>assets/media/icon/fav-icon.png" />
         <!-- End Favicon Icon -->
 
         <!-- Start CSS -->
@@ -57,24 +57,24 @@ if (isset($_SESSION['user'])) {
 ?>
 
         <!-- Start Body -->
-        <body  style="background-image: url(<?php echo $config['web']['url'] ?>assets/media/bg/bg1.png); background-position: center top; background-size: 100% 265px;"  class="kt-page--loading-enabled kt-page--loading kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading">
+        <body  style="background-image: url(<?php echo $config['web']['url'] ?>assets/media/bg/bg-blue.png); background-position: center top; background-size: 100% 220px; "  class="kt-page--loading-enabled kt-page--loading kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading">
 
         <!-- Start Page -->
 
         <!-- Start Header Mobile -->
-        <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed" style="background-color: #233981;">
+        <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed" style="background-color: #fff;">
             <div class="kt-header-mobile__toolbar">
             <button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler"><span></span></button>
             </div>
 	        <div class="kt-header-mobile__logo">
 		        <a href="<?php echo $config['web']['url'] ?>">
-			        <img alt="Logo" src="<?php echo $config['web']['url'] ?>assets/media/logos/logoputih.png" style="width: 180px;"/>
+			        <img alt="Logo" src="<?php echo $config['web']['url'] ?>assets/media/icon/indofazz.png" style="width: 150px;"/>
 		        </a>
 	        </div>
 	        <div class="kt-header-mobile__toolbar">
 	            <div class="kt-header__topbar-item dropdown">
 		    <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
-			    <span class="kt-header__topbar-icon kt-pulse kt-pulse--light">
+			    <span class="kt-header__topbar-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <rect x="0" y="0" width="24" height="24"/>
@@ -273,8 +273,8 @@ if (isset($_SESSION['user'])) {
         <!-- Start Brand -->
         <div class="kt-header__brand kt-grid__item" id="kt_header_brand">
 	        <a class="kt-header__brand-logo" href="<?php echo $config['web']['url'] ?>">
-		        <img alt="Logo" src="<?php echo $config['web']['url'] ?>assets/media/logos/logoputih.png" style="width: 150px;" class="kt-header__brand-logo-default"/>
-		        <img alt="Logo" src="<?php echo $config['web']['url'] ?>assets/media/logos/logoputih.png" style="width: 150px;" class="kt-header__brand-logo-sticky"/>
+		        <img alt="Logo" src="<?php echo $config['web']['url'] ?>assets/media/logos/indofazz.png" style="width: 150px;" class="kt-header__brand-logo-default"/>
+		        <img alt="Logo" src="<?php echo $config['web']['url'] ?>assets/media/logos/indofazz.png" style="width: 150px;" class="kt-header__brand-logo-sticky"/>
 	        </a>		
         </div>
         <!-- End Brand -->
@@ -700,19 +700,19 @@ if (isset($_SESSION['user'])) {
         </div>
         <!-- End Header Topbar -
         <!-- Start Navigation Bottom -->
-        <nav class="navbar navbar-dark navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none p-0" style="background:linear-gradient(to left, #435eaa, #054dc7)">
+        <nav class="navbar navbar-dark navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none p-0" style="background:linear-gradient(to left, #fff, #fff)">
         <ul class="navbar-nav nav-justified w-100">
         <li class="nav-item">
             <a href="<?php echo $config['web']['url'] ?>" class="nav-link text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                <span class="small d-block">Beranda</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span class="small d-block" style="color:#000;">Beranda</span>
             </a>
         </li>
 
         <li class="nav-item dropup">
             <a href="#" class="nav-link text-center" role="button" id="riwayat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                <span class="small d-block">Riwayat</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span class="small d-block" style="color:#000;">Riwayat</span>
             </a>
             <!-- Dropup menu for history -->
             <div class="dropdown-menu" aria-labelledby="riwayat">
@@ -720,22 +720,22 @@ if (isset($_SESSION['user'])) {
                 <a class="dropdown-item" href="<?php echo $config['web']['url'] ?>history/order">Riwayat Transaksi</a>
             </div>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
             <a href="<?php echo $config['web']['url'] ?>deposit-balance" class="nav-link text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                <span class="small d-block">Deposit</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                <span class="small d-block" style="color:#000;">Deposit</span>
             </a>
-        </li>
+        </li>-->
         <li class="nav-item">
             <a href="<?php echo $config['web']['url'] ?>page/news" class="nav-link text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path></svg>
-                <span class="small d-block">Notifikasi</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path></svg>
+                <span class="small d-block" style="color:#000;">Notifikasi</span>
             </a>
         </li>
         <li class="nav-item dropup">
             <a href="#" class="nav-link text-center" role="button" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3"/><circle cx="12" cy="10" r="3"/><circle cx="12" cy="12" r="10"/></svg>
-                <span class="small d-block">Akun</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3"/><circle cx="12" cy="10" r="3"/><circle cx="12" cy="12" r="10"/></svg>
+                <span class="small d-block" style="color:#000;">Akun</span>
             </a>
             <!-- Dropup menu for history -->
             <div class="dropdown-menu dropdown-menu-right mt-3" style="left: -140px;">

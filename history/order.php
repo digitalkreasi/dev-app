@@ -30,26 +30,15 @@ require '../lib/header.php';
 	        <div class="col-lg-12">
 		        <div class="kt-portlet">
 			        <div class="kt-portlet__head">
-				        <div class="kt-portlet__head-label">
-					        <h3 class="kt-portlet__head-title">
-					            <i class="flaticon2-shopping-cart-1 text-primary"></i>
-					            Riwayat Pesanan
-					        </h3>
-				        </div>
 				        <div class="kt-portlet__head-toolbar">
 					        <ul class="nav nav-pills nav-pills-sm nav-pills-label nav-pills-bold" role="tablist">
 					            <li class="nav-item">
-					                <a class="nav-link active" href="https://solusimedia.com/public/history/order" role="tab">
+					                <a class="nav-link active" href="https://digitalkreasigroup.com/indofazz/history/order" role="tab">
 					                Semua
 					                </a>
 					            </li>
 					            <li class="nav-item">
-					                <a class="nav-link" href="https://solusimedia.com/public/history/order-sosmed" role="tab">
-					                Sosial Media
-					                </a>
-					            </li>
-					            <li class="nav-item">
-					                <a href="https://solusimedia.com/public/history/order-top-up" aria-expanded="false" class="nav-link">
+					                <a href="https://digitalkreasigroup.com/indofazz/history/order-top-up" aria-expanded="false" class="nav-link">
 					                Top Up
 					                </a>  
 					            </li>

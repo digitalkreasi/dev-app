@@ -9,7 +9,7 @@ if (isset($_SESSION['user'])) {
     $check_username = $check_user->num_rows;
     if ($check_username == 0) {
         $_SESSION['hasil'] = array('alert' => 'danger', 'pesan' => 'Dilarang Mengakses');    
-        exit(header("Location: ".$config['web']['url']));
+        exit(header("Location: ".$config['web']['url']."auth/login"));
     }    
 	$sess_username = $_SESSION['user']['username'];
 }

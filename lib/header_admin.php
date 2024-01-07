@@ -12,11 +12,11 @@ require 'csrf_token.php';
         <title><?php echo $data['title']; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta content="<?php echo $data['deskripsi_web']; ?>" name="description" />
-        <meta content="MALING" name="author" />
+        <meta content="" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- Start Favicon -->
-        <link rel="icon" href="<?php echo $config['web']['url'] ?>assets/media/logos/logooke1.png" type="image/png">
+        <link rel="icon" href="<?php echo $config['web']['url'] ?>assets/media/icon/fav-icon.png" type="image/png">
         <!-- End Favicon -->
 
         <!-- Start CSS -->
@@ -40,28 +40,7 @@ require 'csrf_token.php';
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <!-- End Script Morris Chart -->
 
-        <!-- Start Hotjar Tracking -->
-        <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:1070954,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
-        <!-- End Hotjar Tracking -->
         
-        <!-- Start Global Site Tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-37564768-1');
-        </script>
-        <!-- End Global Site Tag (gtag.js) - Google Analytics -->
 
         <!-- Start Body -->
         <body  class="kt-page--loading-enabled kt-page--loading kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--left kt-aside--fixed kt-page--loading">
